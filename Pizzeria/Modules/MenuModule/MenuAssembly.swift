@@ -22,7 +22,6 @@ enum MenuAssembly {
 
         let tabImage = UIImage(systemName: Constants.tabImageName)
         menuViewController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 0)
-
         return menuViewController.wrappedInNavigationController()
     }
 }

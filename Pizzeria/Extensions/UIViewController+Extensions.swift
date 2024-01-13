@@ -1,5 +1,5 @@
 //
-//  UIViewController+Extension.swift
+//  UIViewController+Extensions.swift
 //  Pizzeria
 //
 //  Created by Юрий Степанчук on 13.01.2024.

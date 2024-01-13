@@ -14,7 +14,7 @@
 		EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701D52B528FFA00B47173 /* PizzeriaAssembly.swift */; };
 		EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701D82B5291FB00B47173 /* MenuAssembly.swift */; };
 		EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DA2B52949500B47173 /* MenuViewController.swift */; };
-		EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */; };
+		EF3701DE2B5295AE00B47173 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DD2B5295AE00B47173 /* UIViewController+Extensions.swift */; };
 		EF3701E42B529FAC00B47173 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3701E32B529FAC00B47173 /* Colors.xcassets */; };
 		EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701E62B52A35A00B47173 /* ContactsAssembly.swift */; };
 		EF3701E92B52A3A300B47173 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701E82B52A3A300B47173 /* ProfileAssembly.swift */; };
@@ -22,6 +22,11 @@
 		EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701EC2B52A42500B47173 /* ContactsController.swift */; };
 		EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701EE2B52A49A00B47173 /* ProfileController.swift */; };
 		EF3701F12B52A52400B47173 /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701F02B52A52400B47173 /* CartController.swift */; };
+		EF3701F72B52D51100B47173 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701F62B52D51100B47173 /* UITableView+Extensions.swift */; };
+		EF3701F92B52D55C00B47173 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701F82B52D55C00B47173 /* UITableViewCell+Extensions.swift */; };
+		EF3701FB2B52D62E00B47173 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701FA2B52D62E00B47173 /* MenuCell.swift */; };
+		EF3701FD2B52D66200B47173 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701FC2B52D66200B47173 /* UIView+Extensions.swift */; };
+		EF3701FF2B52D90000B47173 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701FE2B52D90000B47173 /* UILabel+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +39,7 @@
 		EF3701D52B528FFA00B47173 /* PizzeriaAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzeriaAssembly.swift; sourceTree = "<group>"; };
 		EF3701D82B5291FB00B47173 /* MenuAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAssembly.swift; sourceTree = "<group>"; };
 		EF3701DA2B52949500B47173 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EF3701DD2B5295AE00B47173 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EF3701E32B529FAC00B47173 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		EF3701E62B52A35A00B47173 /* ContactsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAssembly.swift; sourceTree = "<group>"; };
 		EF3701E82B52A3A300B47173 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
@@ -42,6 +47,11 @@
 		EF3701EC2B52A42500B47173 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		EF3701EE2B52A49A00B47173 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		EF3701F02B52A52400B47173 /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
+		EF3701F62B52D51100B47173 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
+		EF3701F82B52D55C00B47173 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		EF3701FA2B52D62E00B47173 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		EF3701FC2B52D66200B47173 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		EF3701FE2B52D90000B47173 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +116,11 @@
 		EF3701DF2B5295BC00B47173 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */,
+				EF3701DD2B5295AE00B47173 /* UIViewController+Extensions.swift */,
+				EF3701F62B52D51100B47173 /* UITableView+Extensions.swift */,
+				EF3701F82B52D55C00B47173 /* UITableViewCell+Extensions.swift */,
+				EF3701FC2B52D66200B47173 /* UIView+Extensions.swift */,
+				EF3701FE2B52D90000B47173 /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -124,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
+				EF3701FA2B52D62E00B47173 /* MenuCell.swift */,
 			);
 			path = MenuViews;
 			sourceTree = "<group>";
@@ -237,18 +252,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */,
+				EF3701DE2B5295AE00B47173 /* UIViewController+Extensions.swift in Sources */,
 				EF3701F12B52A52400B47173 /* CartController.swift in Sources */,
+				EF3701FF2B52D90000B47173 /* UILabel+Extensions.swift in Sources */,
 				EF3701E92B52A3A300B47173 /* ProfileAssembly.swift in Sources */,
 				EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */,
 				EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */,
 				EF3701C22B528E9600B47173 /* AppDelegate.swift in Sources */,
+				EF3701FD2B52D66200B47173 /* UIView+Extensions.swift in Sources */,
 				EF3701EB2B52A3AE00B47173 /* CartAssembly.swift in Sources */,
+				EF3701F92B52D55C00B47173 /* UITableViewCell+Extensions.swift in Sources */,
 				EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */,
 				EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */,
 				EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */,
+				EF3701FB2B52D62E00B47173 /* MenuCell.swift in Sources */,
 				EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */,
 				EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */,
+				EF3701F72B52D51100B47173 /* UITableView+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
