@@ -45,7 +45,7 @@ final class MenuViewController: UIViewController {
 
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .blue //.pizzeriaBackground
+        tableView.backgroundColor = .pizzeriaBackground
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MenuCell.self)
@@ -82,7 +82,7 @@ final class MenuViewController: UIViewController {
             menuTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             menuTableView.topAnchor.constraint(equalToSystemSpacingBelow: categoriesView.bottomAnchor, multiplier: 1),
             menuTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            menuTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 
@@ -101,14 +101,11 @@ extension MenuViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             cell.makeUpperCornersRounded()
         }
-
-        // TODO: Remove HardCode
-        let cellDisplayData = MenuCell.DisplayData(title: "Пицца – Пепперони",
-                                                   description: "Тесто, пицца соус, моцарелла, шампиньоны, пепперони.",
-                                                   price: "419",
-                                                   imageStringURL: "https://the-cafe.ru/product/picca-pepperoni/")
-        cell.configure(with: cellDisplayData)
-        cell.setImage(UIImage(named: "pepperoni")?.pngData())
+        let displayData = MenuCell.DisplayData(title: "Ветчина и грибы",
+                                               description: "Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус",
+                                               price: "от 345 р",
+                                               image: UIImage(named: "Buffalo1")!)
+        cell.configure(with: displayData)
         return cell
     }
 }

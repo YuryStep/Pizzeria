@@ -15,6 +15,7 @@ enum PizzeriaAssembly {
         let cart = CartAssembly.makeModule()
 
         let tabBarController = makeTabBarController(with: [menu, contacts, profile, cart])
+        tabBarController.tabBar.tintColor = .pizzeriaAccent
         return tabBarController
     }
 

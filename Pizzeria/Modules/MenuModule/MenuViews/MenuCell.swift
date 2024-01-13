@@ -12,33 +12,40 @@ final class MenuCell: UITableViewCell {
         let title: String
         let description: String
         let price: String
-        let imageStringURL: String
+        let image: UIImage
     }
 
     private enum Constants {
+        static let internalPadding: CGFloat = 8
+        static let externalPadding: CGFloat = 16
         static let defaultCornerRadiusOfFirstCell: CGFloat = 20
-        static let dateAndSourceLabelText = " Source: "
-        static let imageRatio: CGFloat = 0.562
     }
 
-    private lazy var dateAndSourceLabel = UILabel(textStyle: .footnote)
-    private lazy var titleLabel: UILabel = .init(textStyle: .title2)
+    private lazy var titleLabel: UILabel = .init(textStyle: .title3)
     private lazy var descriptionLabel = UILabel(textStyle: .body)
 
-    private lazy var loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.hidesWhenStopped = true
-        return indicator
+    // TODO: Need Refactoring:
+    private lazy var priceButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let accentColor: UIColor = .pizzeriaAccent
+        button.setTitleColor(accentColor, for: .normal)
+        button.setTitleColor(.pizzeriaAccentColorTransparent, for: .highlighted)
+        button.backgroundColor = UIColor.clear
+        button.layer.cornerRadius = 6
+        button.layer.borderWidth = 1
+        button.layer.borderColor = accentColor.cgColor
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 5,
+                                                       leading: 10,
+                                                       bottom: 5,
+                                                       trailing: 10)
+        button.configuration = config
+        return button
     }()
 
-    private lazy var imageContainer: UIView = {
-        let container = UIView()
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
-
-    private lazy var articleImageView: UIImageView = {
+    private lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -56,75 +63,41 @@ final class MenuCell: UITableViewCell {
         backgroundColor = .white
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        clearPreviousConfiguration()
-    }
-
     func configure(with displayData: DisplayData) {
-        loadingIndicator.startAnimating()
         titleLabel.text = displayData.title
         descriptionLabel.text = displayData.description
+        priceButton.setTitle(displayData.price, for: .normal)
+        foodImageView.image = displayData.image
     }
 
     func makeUpperCornersRounded(radius: CGFloat = Constants.defaultCornerRadiusOfFirstCell) {
         layer.cornerRadius = radius
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-    }
-
-    func setImage(_ imageData: Data?) {
-        loadingIndicator.stopAnimating()
-        guard let imageData = imageData, let fetchedImage = UIImage(data: imageData) else {
-            articleImageView.image = .noImageIcon
-            return
-        }
-        articleImageView.image = fetchedImage
-    }
-
-    func getImageData() -> Data? {
-        if let jpegImage = articleImageView.image?.jpegData(compressionQuality: 1) {
-            return jpegImage
-        }
-        return articleImageView.image?.pngData()
-    }
-
-    private func clearPreviousConfiguration() {
-        // Do preparation if needed
+        clipsToBounds = true
     }
 
     private func setupSubviews() {
-        imageContainer.addSubviews([loadingIndicator, articleImageView])
-        contentView.addSubviews([imageContainer, dateAndSourceLabel, titleLabel, descriptionLabel])
+        contentView.addSubviews([foodImageView, titleLabel, descriptionLabel, priceButton])
 
         NSLayoutConstraint.activate([
-            articleImageView.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor),
-            articleImageView.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor),
-            articleImageView.widthAnchor.constraint(lessThanOrEqualTo: imageContainer.widthAnchor, multiplier: 1),
-            articleImageView.heightAnchor.constraint(lessThanOrEqualTo: imageContainer.heightAnchor, multiplier: 1),
+            foodImageView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, multiplier: 1),
+            foodImageView.heightAnchor.constraint(equalToConstant: 132),
+            foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.externalPadding),
 
-            loadingIndicator.centerXAnchor.constraint(equalTo: imageContainer.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: imageContainer.centerYAnchor),
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: foodImageView.trailingAnchor, multiplier: 1),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.externalPadding),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.internalPadding * -1),
 
-            imageContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageContainer.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            imageContainer.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1),
-            imageContainer.heightAnchor.constraint(equalTo: imageContainer.widthAnchor, multiplier: Constants.imageRatio),
+            descriptionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: foodImageView.trailingAnchor, multiplier: 1),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.internalPadding),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.internalPadding * -1),
 
-            dateAndSourceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            dateAndSourceLabel.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 8),
-            dateAndSourceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            priceButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: Constants.internalPadding),
+            priceButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.internalPadding * -1),
 
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            titleLabel.topAnchor.constraint(equalTo: dateAndSourceLabel.bottomAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-
-            descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: foodImageView.bottomAnchor, constant: Constants.externalPadding),
+            contentView.bottomAnchor.constraint(greaterThanOrEqualTo: priceButton.bottomAnchor, constant: Constants.externalPadding)
         ])
-
-        dateAndSourceLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        titleLabel.setContentHuggingPriority(.defaultHigh - 1, for: .vertical)
     }
 }
