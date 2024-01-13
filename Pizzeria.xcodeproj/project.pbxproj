@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		EF3701C22B528E9600B47173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701C12B528E9600B47173 /* AppDelegate.swift */; };
 		EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701C32B528E9600B47173 /* SceneDelegate.swift */; };
-		EF3701C62B528E9600B47173 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701C52B528E9600B47173 /* ViewController.swift */; };
-		EF3701C92B528E9600B47173 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3701C72B528E9600B47173 /* Main.storyboard */; };
 		EF3701CB2B528E9900B47173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3701CA2B528E9900B47173 /* Assets.xcassets */; };
 		EF3701CE2B528E9900B47173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF3701CC2B528E9900B47173 /* LaunchScreen.storyboard */; };
+		EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701D52B528FFA00B47173 /* PizzeriaAssembly.swift */; };
+		EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701D82B5291FB00B47173 /* MenuAssembly.swift */; };
+		EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DA2B52949500B47173 /* MenuViewController.swift */; };
+		EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF3701BE2B528E9600B47173 /* Pizzeria.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pizzeria.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF3701C12B528E9600B47173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF3701C32B528E9600B47173 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF3701C52B528E9600B47173 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EF3701C82B528E9600B47173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF3701CA2B528E9900B47173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF3701CD2B528E9900B47173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF3701CF2B528E9900B47173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF3701D52B528FFA00B47173 /* PizzeriaAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PizzeriaAssembly.swift; sourceTree = "<group>"; };
+		EF3701D82B5291FB00B47173 /* MenuAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAssembly.swift; sourceTree = "<group>"; };
+		EF3701DA2B52949500B47173 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,49 @@
 		EF3701C02B528E9600B47173 /* Pizzeria */ = {
 			isa = PBXGroup;
 			children = (
-				EF3701C12B528E9600B47173 /* AppDelegate.swift */,
-				EF3701C32B528E9600B47173 /* SceneDelegate.swift */,
-				EF3701C52B528E9600B47173 /* ViewController.swift */,
-				EF3701C72B528E9600B47173 /* Main.storyboard */,
-				EF3701CA2B528E9900B47173 /* Assets.xcassets */,
-				EF3701CC2B528E9900B47173 /* LaunchScreen.storyboard */,
-				EF3701CF2B528E9900B47173 /* Info.plist */,
+				EF3701D72B52901100B47173 /* Root */,
+				EF3701DC2B52950000B47173 /* Supporting Files */,
+				EF3701E02B5295CF00B47173 /* MenuModule */,
+				EF3701DF2B5295BC00B47173 /* Extensions */,
 			);
 			path = Pizzeria;
+			sourceTree = "<group>";
+		};
+		EF3701D72B52901100B47173 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701C12B528E9600B47173 /* AppDelegate.swift */,
+				EF3701C32B528E9600B47173 /* SceneDelegate.swift */,
+				EF3701D52B528FFA00B47173 /* PizzeriaAssembly.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		EF3701DC2B52950000B47173 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701CC2B528E9900B47173 /* LaunchScreen.storyboard */,
+				EF3701CA2B528E9900B47173 /* Assets.xcassets */,
+				EF3701CF2B528E9900B47173 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EF3701DF2B5295BC00B47173 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF3701E02B5295CF00B47173 /* MenuModule */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701D82B5291FB00B47173 /* MenuAssembly.swift */,
+				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
+			);
+			path = MenuModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +165,6 @@
 			files = (
 				EF3701CE2B528E9900B47173 /* LaunchScreen.storyboard in Resources */,
 				EF3701CB2B528E9900B47173 /* Assets.xcassets in Resources */,
-				EF3701C92B528E9600B47173 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +175,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF3701C62B528E9600B47173 /* ViewController.swift in Sources */,
+				EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */,
+				EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */,
+				EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */,
 				EF3701C22B528E9600B47173 /* AppDelegate.swift in Sources */,
 				EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */,
+				EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EF3701C72B528E9600B47173 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF3701C82B528E9600B47173 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EF3701CC2B528E9900B47173 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +329,6 @@
 				INFOPLIST_FILE = Pizzeria/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +356,6 @@
 				INFOPLIST_FILE = Pizzeria/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
