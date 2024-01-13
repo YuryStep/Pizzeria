@@ -14,7 +14,12 @@ enum MenuAssembly {
     }
 
     static func makeModule() -> UIViewController {
+//        let menuView = FeedView()
         let menuViewController = MenuViewController()   // MenuViewController(view: menuView)
+//        let menuPresenter = MenuPresenter(view: menuViewController, dataManager: DataManager.shared)
+//        menuView.delegate = menuViewController
+//        menuViewController.presenter = menuPresenter
+
         let tabImage = UIImage(systemName: Constants.tabImageName)
         menuViewController.tabBarItem = UITabBarItem(title: Constants.tabIconName, image: tabImage, tag: 0)
 

@@ -10,9 +10,9 @@ import UIKit
 enum PizzeriaAssembly {
     static func makeModule() -> UIViewController {
         let menu = MenuAssembly.makeModule()
-        let contacts = UIViewController() // TODO: change to smth like: contacts.makeModule()
-        let profile = UIViewController() // TODO: change to smth like: profile.makeModule()
-        let cart = UIViewController() // TODO: change to smth like: cart.makeModule()
+        let contacts = ContactsAssembly.makeModule()
+        let profile = ProfileAssembly.makeModule()
+        let cart = CartAssembly.makeModule()
 
         let tabBarController = makeTabBarController(with: [menu, contacts, profile, cart])
         return tabBarController

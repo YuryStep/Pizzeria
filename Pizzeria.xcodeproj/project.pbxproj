@@ -15,6 +15,13 @@
 		EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701D82B5291FB00B47173 /* MenuAssembly.swift */; };
 		EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DA2B52949500B47173 /* MenuViewController.swift */; };
 		EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */; };
+		EF3701E42B529FAC00B47173 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF3701E32B529FAC00B47173 /* Colors.xcassets */; };
+		EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701E62B52A35A00B47173 /* ContactsAssembly.swift */; };
+		EF3701E92B52A3A300B47173 /* ProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701E82B52A3A300B47173 /* ProfileAssembly.swift */; };
+		EF3701EB2B52A3AE00B47173 /* CartAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701EA2B52A3AE00B47173 /* CartAssembly.swift */; };
+		EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701EC2B52A42500B47173 /* ContactsController.swift */; };
+		EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701EE2B52A49A00B47173 /* ProfileController.swift */; };
+		EF3701F12B52A52400B47173 /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3701F02B52A52400B47173 /* CartController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		EF3701D82B5291FB00B47173 /* MenuAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuAssembly.swift; sourceTree = "<group>"; };
 		EF3701DA2B52949500B47173 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		EF3701DD2B5295AE00B47173 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EF3701E32B529FAC00B47173 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		EF3701E62B52A35A00B47173 /* ContactsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAssembly.swift; sourceTree = "<group>"; };
+		EF3701E82B52A3A300B47173 /* ProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAssembly.swift; sourceTree = "<group>"; };
+		EF3701EA2B52A3AE00B47173 /* CartAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartAssembly.swift; sourceTree = "<group>"; };
+		EF3701EC2B52A42500B47173 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
+		EF3701EE2B52A49A00B47173 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		EF3701F02B52A52400B47173 /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +74,10 @@
 		EF3701C02B528E9600B47173 /* Pizzeria */ = {
 			isa = PBXGroup;
 			children = (
+				EF3701F52B52A62100B47173 /* Modules */,
+				EF3701DF2B5295BC00B47173 /* Extensions */,
 				EF3701D72B52901100B47173 /* Root */,
 				EF3701DC2B52950000B47173 /* Supporting Files */,
-				EF3701E02B5295CF00B47173 /* MenuModule */,
-				EF3701DF2B5295BC00B47173 /* Extensions */,
 			);
 			path = Pizzeria;
 			sourceTree = "<group>";
@@ -83,6 +97,7 @@
 			children = (
 				EF3701CC2B528E9900B47173 /* LaunchScreen.storyboard */,
 				EF3701CA2B528E9900B47173 /* Assets.xcassets */,
+				EF3701E32B529FAC00B47173 /* Colors.xcassets */,
 				EF3701CF2B528E9900B47173 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -100,9 +115,55 @@
 			isa = PBXGroup;
 			children = (
 				EF3701D82B5291FB00B47173 /* MenuAssembly.swift */,
-				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
+				EF3701E52B52A13C00B47173 /* MenuViews */,
 			);
 			path = MenuModule;
+			sourceTree = "<group>";
+		};
+		EF3701E52B52A13C00B47173 /* MenuViews */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
+			);
+			path = MenuViews;
+			sourceTree = "<group>";
+		};
+		EF3701F22B52A5EB00B47173 /* ContactsModule */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701E62B52A35A00B47173 /* ContactsAssembly.swift */,
+				EF3701EC2B52A42500B47173 /* ContactsController.swift */,
+			);
+			path = ContactsModule;
+			sourceTree = "<group>";
+		};
+		EF3701F32B52A60000B47173 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701E82B52A3A300B47173 /* ProfileAssembly.swift */,
+				EF3701EE2B52A49A00B47173 /* ProfileController.swift */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		EF3701F42B52A61000B47173 /* CartModule */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701EA2B52A3AE00B47173 /* CartAssembly.swift */,
+				EF3701F02B52A52400B47173 /* CartController.swift */,
+			);
+			path = CartModule;
+			sourceTree = "<group>";
+		};
+		EF3701F52B52A62100B47173 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				EF3701E02B5295CF00B47173 /* MenuModule */,
+				EF3701F22B52A5EB00B47173 /* ContactsModule */,
+				EF3701F32B52A60000B47173 /* ProfileModule */,
+				EF3701F42B52A61000B47173 /* CartModule */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF3701E42B529FAC00B47173 /* Colors.xcassets in Resources */,
 				EF3701CE2B528E9900B47173 /* LaunchScreen.storyboard in Resources */,
 				EF3701CB2B528E9900B47173 /* Assets.xcassets in Resources */,
 			);
@@ -176,11 +238,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF3701DE2B5295AE00B47173 /* UIViewController+Extension.swift in Sources */,
+				EF3701F12B52A52400B47173 /* CartController.swift in Sources */,
+				EF3701E92B52A3A300B47173 /* ProfileAssembly.swift in Sources */,
 				EF3701DB2B52949500B47173 /* MenuViewController.swift in Sources */,
 				EF3701D92B5291FB00B47173 /* MenuAssembly.swift in Sources */,
 				EF3701C22B528E9600B47173 /* AppDelegate.swift in Sources */,
+				EF3701EB2B52A3AE00B47173 /* CartAssembly.swift in Sources */,
+				EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */,
+				EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */,
 				EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */,
 				EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */,
+				EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
