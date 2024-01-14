@@ -22,7 +22,7 @@ final class MenuCell: UITableViewCell {
     }
 
     private lazy var titleLabel: UILabel = .init(textStyle: .title3)
-    private lazy var descriptionLabel = UILabel(textStyle: .body)
+    private lazy var descriptionLabel = UILabel(textStyle: .subheadline)
 
     // TODO: Need Refactoring:
     private lazy var priceButton: UIButton = {

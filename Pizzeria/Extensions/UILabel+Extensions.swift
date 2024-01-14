@@ -18,7 +18,7 @@ extension UILabel {
 
         switch textStyle {
         case .title2: font = UIFont.boldSystemFont(ofSize: font.pointSize)
-        case .footnote: textColor = .systemGray
+        case .body: textColor = .systemGray
         default: return
         }
     }

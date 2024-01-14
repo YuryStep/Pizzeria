@@ -29,16 +29,14 @@ final class MenuViewController: UIViewController {
         return currentCityButton
     }()
 
-    private lazy var bannersView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .green
+    private lazy var bannersView: BannersView = {
+        let view = BannersView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    private lazy var categoriesView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orange
+    private lazy var categoriesView: CategoriesView = {
+        let view = CategoriesView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -69,19 +67,17 @@ final class MenuViewController: UIViewController {
         view.addSubviews([bannersView, categoriesView, menuTableView])
 
         NSLayoutConstraint.activate([
-            bannersView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            bannersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bannersView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor , multiplier: 1),
-            bannersView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            bannersView.heightAnchor.constraint(equalToConstant: 112),
+            bannersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
-            categoriesView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            categoriesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             categoriesView.topAnchor.constraint(equalToSystemSpacingBelow: bannersView.bottomAnchor, multiplier: 1),
-            categoriesView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            categoriesView.heightAnchor.constraint(equalToConstant: 32),
+            categoriesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
 
-            menuTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            menuTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             menuTableView.topAnchor.constraint(equalToSystemSpacingBelow: categoriesView.bottomAnchor, multiplier: 1),
-            menuTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            menuTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             menuTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
@@ -93,7 +89,7 @@ final class MenuViewController: UIViewController {
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return 3
+        return stub.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,18 +97,32 @@ extension MenuViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             cell.makeUpperCornersRounded()
         }
-        let displayData = MenuCell.DisplayData(title: "Ветчина и грибы",
-                                               description: "Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус",
-                                               price: "от 345 р",
-                                               image: UIImage(named: "Buffalo1")!)
-        cell.configure(with: displayData)
+
+        cell.configure(with: stub[indexPath.row])
         return cell
     }
 }
 
 extension MenuViewController: UITableViewDelegate {
-    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: tell Presenter about tap
-        menuTableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+let stub = [MenuCell.DisplayData(title: "Ветчина и грибы",
+                                 description: "Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус",
+                                 price: "от 345 р",
+                                 image: UIImage(named: "Buffalo1")!),
+            MenuCell.DisplayData(title: "Баварские колбаски",
+                                 description: "Баварские колбаски,ветчина, пикантная пепперони, острая чоризо, моцарелла, томатный соус",
+                                 price: "от 345 р",
+                                 image: UIImage(named: "bavar2")!),
+            MenuCell.DisplayData(title: "Нежный лосось",
+                                 description: "Лосось, томаты черри, моцарелла, соус песто",
+                                 price: "от 345 р",
+                                 image: UIImage(named: "losos3")!),
+            MenuCell.DisplayData(title: "Пицца четыре сыра",
+                                 description: "Соус Карбонара, Сыр Моцарелла, Сыр Пармезан, Сыр Роккфорти, Сыр Чеддер (тёртый)",
+                                 price: "от 345 р",
+                                 image: UIImage(named: "chees4")!)]
