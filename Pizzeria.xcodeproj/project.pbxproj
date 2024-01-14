@@ -30,6 +30,7 @@
 		EF3702052B5341C000B47173 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702042B5341C000B47173 /* CategoriesView.swift */; };
 		EF3702072B53431400B47173 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702062B53431400B47173 /* CategoryButton.swift */; };
 		EF3702092B5348AC00B47173 /* BannersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702082B5348AC00B47173 /* BannersView.swift */; };
+		EF3702222B54138500B47173 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		EF3702042B5341C000B47173 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		EF3702062B53431400B47173 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		EF3702082B5348AC00B47173 /* BannersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersView.swift; sourceTree = "<group>"; };
+		EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				EF3701DD2B5295AE00B47173 /* UIViewController+Extensions.swift */,
 				EF3701F62B52D51100B47173 /* UITableView+Extensions.swift */,
 				EF3701F82B52D55C00B47173 /* UITableViewCell+Extensions.swift */,
+				EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */,
 				EF3701FC2B52D66200B47173 /* UIView+Extensions.swift */,
 				EF3701FE2B52D90000B47173 /* UILabel+Extensions.swift */,
 			);
@@ -273,6 +276,7 @@
 				EF3701FD2B52D66200B47173 /* UIView+Extensions.swift in Sources */,
 				EF3701EB2B52A3AE00B47173 /* CartAssembly.swift in Sources */,
 				EF3701F92B52D55C00B47173 /* UITableViewCell+Extensions.swift in Sources */,
+				EF3702222B54138500B47173 /* UICollectionView+Extensions.swift in Sources */,
 				EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */,
 				EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */,
 				EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */,

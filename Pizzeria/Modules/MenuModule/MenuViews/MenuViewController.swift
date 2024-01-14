@@ -48,6 +48,8 @@ final class MenuViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(MenuCell.self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = BannersView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 132))
+        tableView.separatorInset = .zero
         return tableView
     }()
 
@@ -64,21 +66,14 @@ final class MenuViewController: UIViewController {
 
     private func setupView() {
         view.backgroundColor = .pizzeriaBackground
-        view.addSubviews([bannersView, categoriesView, menuTableView])
+        view.addSubview(menuTableView)
+        let guide = view.safeAreaLayoutGuide
 
         NSLayoutConstraint.activate([
-            bannersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bannersView.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor , multiplier: 1),
-            bannersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
-            categoriesView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            categoriesView.topAnchor.constraint(equalToSystemSpacingBelow: bannersView.bottomAnchor, multiplier: 1),
-            categoriesView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-
-            menuTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            menuTableView.topAnchor.constraint(equalToSystemSpacingBelow: categoriesView.bottomAnchor, multiplier: 1),
-            menuTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            menuTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
+            menuTableView.topAnchor.constraint(equalTo: guide.topAnchor),
+            menuTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
+            menuTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
         ])
     }
 
@@ -107,6 +102,10 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: tell Presenter about tap
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return CategoriesView()
     }
 }
 

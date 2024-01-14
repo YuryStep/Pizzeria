@@ -27,13 +27,13 @@ final class CategoriesView: UIView {
                                      backgroundColor: .pizzeriaAccentColorTransparent)
         let button2 = CategoryButton(title: "Комбо",
                                      textColor: .pizzeriaAccent,
-                                     backgroundColor: .clear)
+                                     backgroundColor: .pizzeriaBackground)
         let button3 = CategoryButton(title: "Десерты",
                                      textColor: .pizzeriaAccent,
-                                     backgroundColor: .clear)
+                                     backgroundColor: .pizzeriaBackground)
         let button4 = CategoryButton(title: "Напитки",
                                      textColor: .pizzeriaAccent,
-                                     backgroundColor: .clear)
+                                     backgroundColor: .pizzeriaBackground)
 
         let stackView = UIStackView(arrangedSubviews: [button1, button2, button3, button4])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ final class CategoriesView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .clear
+        backgroundColor = .pizzeriaBackground
         setupSubviews()
     }
 
@@ -59,10 +59,10 @@ final class CategoriesView: UIView {
         addSubview(scrollView)
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
             scrollView.leadingAnchor.constraint(equalTo: categoriesStackView.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: categoriesStackView.topAnchor),
