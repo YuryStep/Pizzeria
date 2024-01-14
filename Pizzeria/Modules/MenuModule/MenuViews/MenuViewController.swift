@@ -7,12 +7,25 @@
 
 import UIKit
 
+protocol MenuOutput: AnyObject {
+    func getNumberOfRowsInSection(_: Int) -> Int
+    func getDisplayDataForItem(at indexPath: IndexPath) -> MenuCell.DisplayData
+    func didTapOnCurrentCityButton()
+    func didTapOnCell(at indexPath: IndexPath)
+}
+
+protocol MenuInput: AnyObject { 
+    func scrollTableToCell(at: IndexPath)
+}
+
 final class MenuViewController: UIViewController {
     private enum Constants {
         static let currentCityTitle = "Москва"
         static let currentCityButtonImage = "chevron.down"
         static let currentCityTitleImagePadding: CGFloat = 4
     }
+
+    var presenter: MenuOutput!
 
     private lazy var currentCityButton: UIButton = {
         let currentCityButton = UIButton(type: .system)
@@ -78,13 +91,13 @@ final class MenuViewController: UIViewController {
     }
 
     @objc private func currentCityButtonTapped() {
-        // TODO: Add action on Tap
+        presenter.didTapOnCurrentCityButton()
     }
 }
 
 extension MenuViewController: UITableViewDataSource {
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return stub.count
+    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.getNumberOfRowsInSection(_: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,15 +106,16 @@ extension MenuViewController: UITableViewDataSource {
             cell.makeUpperCornersRounded()
         }
 
-        cell.configure(with: stub[indexPath.row])
+        let displayData = presenter.getDisplayDataForItem(at: indexPath)
+        cell.configure(with: displayData)
         return cell
     }
 }
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: tell Presenter about tap
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter.didTapOnCell(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -109,19 +123,8 @@ extension MenuViewController: UITableViewDelegate {
     }
 }
 
-let stub = [MenuCell.DisplayData(title: "Ветчина и грибы",
-                                 description: "Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус",
-                                 price: "от 345 р",
-                                 image: UIImage(named: "Buffalo1")!),
-            MenuCell.DisplayData(title: "Баварские колбаски",
-                                 description: "Баварские колбаски,ветчина, пикантная пепперони, острая чоризо, моцарелла, томатный соус",
-                                 price: "от 345 р",
-                                 image: UIImage(named: "bavar2")!),
-            MenuCell.DisplayData(title: "Нежный лосось",
-                                 description: "Лосось, томаты черри, моцарелла, соус песто",
-                                 price: "от 345 р",
-                                 image: UIImage(named: "losos3")!),
-            MenuCell.DisplayData(title: "Пицца четыре сыра",
-                                 description: "Соус Карбонара, Сыр Моцарелла, Сыр Пармезан, Сыр Роккфорти, Сыр Чеддер (тёртый)",
-                                 price: "от 345 р",
-                                 image: UIImage(named: "chees4")!)]
+extension MenuViewController: MenuInput {
+    func scrollTableToCell(at: IndexPath) {
+        // TODO: Add Logic of scrolling to the firstItem of Category
+    }
+}
