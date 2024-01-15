@@ -11,7 +11,7 @@ final class ContactsController: UIViewController {
     private enum Constants {
         static let stabText = "Раздел в разработке"
     }
-    
+
     private lazy var label: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

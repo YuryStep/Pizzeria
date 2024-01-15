@@ -46,7 +46,7 @@ class CategoryButton: UIButton {
         setTitleColor(.pizzeriaAccent, for: .selected)
         setTitleColor(.pizzeriaAccent, for: .highlighted)
 
-        backgroundColor =  .clear
+        backgroundColor = .clear
 
         setTitle(category?.rawValue, for: .normal)
 

@@ -76,7 +76,7 @@ final class MenuViewController: UIViewController {
             menuTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
             menuTableView.topAnchor.constraint(equalTo: guide.topAnchor),
             menuTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+            menuTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
         ])
     }
 

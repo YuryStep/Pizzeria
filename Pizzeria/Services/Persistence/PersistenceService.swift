@@ -50,4 +50,3 @@ final class PersistenceService: AppPersistenceService {
         cache.removeAllObjects()
     }
 }
-

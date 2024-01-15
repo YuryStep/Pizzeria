@@ -4,7 +4,7 @@
 //
 //  Created by Юрий Степанчук on 14.01.2024.
 //
-import UIKit
+
 import Foundation
 
 protocol AppDataManager {
@@ -32,8 +32,6 @@ final class DataManager: AppDataManager {
 
     func getMenu(completion: @escaping (Result<[MenuItem], NetworkError>) -> Void) {
         if let cachedItems: [MenuItem] = persistenceService.readValue(forKey: Constants.cachedMenuItemsKey) {
-//            print("CACHE")
-//            print(cachedItems)
             completion(.success(cachedItems))
         } else {
             var allCategoriesItems: [MenuItem] = []

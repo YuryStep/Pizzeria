@@ -31,7 +31,6 @@ final class CategoriesView: UIView {
             return buttons
         }()
 
-
     private lazy var categoriesStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: categoryButtons)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,8 +57,8 @@ final class CategoriesView: UIView {
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
             scrollView.leadingAnchor.constraint(equalTo: categoriesStackView.leadingAnchor),
@@ -89,8 +88,6 @@ final class CategoriesView: UIView {
 
 extension CategoriesView: CategoryButtonDelegate {
     func categoryButtonTapped(_ button: UIButton, category: Category) {
-//            setSelected(button: button)
             delegate?.categoryTapped(category)
         }
     }
-

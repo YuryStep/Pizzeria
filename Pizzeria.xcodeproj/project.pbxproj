@@ -30,7 +30,6 @@
 		EF3702052B5341C000B47173 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702042B5341C000B47173 /* CategoriesView.swift */; };
 		EF3702072B53431400B47173 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702062B53431400B47173 /* CategoryButton.swift */; };
 		EF3702092B5348AC00B47173 /* BannersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702082B5348AC00B47173 /* BannersView.swift */; };
-		EF3702222B54138500B47173 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */; };
 		EF3702242B5429D300B47173 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702232B5429D300B47173 /* MenuPresenter.swift */; };
 		EF3702282B542AA500B47173 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702272B542AA500B47173 /* Category.swift */; };
 		EF37022B2B54322300B47173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37022A2B54322300B47173 /* DataManager.swift */; };
@@ -38,6 +37,7 @@
 		EF8CF0D92B54535500586E18 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0D82B54535500586E18 /* NetworkError.swift */; };
 		EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E02B545CA100586E18 /* PersistenceService.swift */; };
 		EF8CF0E62B54777200586E18 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E52B54777200586E18 /* Menu.swift */; };
+		EFB9D2742B55CEC900F75A0D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,7 +66,6 @@
 		EF3702042B5341C000B47173 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		EF3702062B53431400B47173 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		EF3702082B5348AC00B47173 /* BannersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersView.swift; sourceTree = "<group>"; };
-		EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		EF3702232B5429D300B47173 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		EF3702272B542AA500B47173 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		EF37022A2B54322300B47173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		EF8CF0D82B54535500586E18 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EF8CF0E02B545CA100586E18 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		EF8CF0E52B54777200586E18 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3701C02B528E9600B47173 /* Pizzeria */,
+				EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */,
 				EF3701BF2B528E9600B47173 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -144,7 +145,6 @@
 				EF3701DD2B5295AE00B47173 /* UIViewController+Extensions.swift */,
 				EF3701F62B52D51100B47173 /* UITableView+Extensions.swift */,
 				EF3701F82B52D55C00B47173 /* UITableViewCell+Extensions.swift */,
-				EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */,
 				EF3701FC2B52D66200B47173 /* UIView+Extensions.swift */,
 				EF3701FE2B52D90000B47173 /* UILabel+Extensions.swift */,
 			);
@@ -261,6 +261,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF3701D22B528E9900B47173 /* Build configuration list for PBXNativeTarget "Pizzeria" */;
 			buildPhases = (
+				EFB9D2702B55CA0500F75A0D /* SwiftLint */,
 				EF3701BA2B528E9600B47173 /* Sources */,
 				EF3701BB2B528E9600B47173 /* Frameworks */,
 				EF3701BC2B528E9600B47173 /* Resources */,
@@ -312,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB9D2742B55CEC900F75A0D /* .swiftlint.yml in Resources */,
 				EF3701E42B529FAC00B47173 /* Colors.xcassets in Resources */,
 				EF3701CE2B528E9900B47173 /* LaunchScreen.storyboard in Resources */,
 				EF3701CB2B528E9900B47173 /* Assets.xcassets in Resources */,
@@ -319,6 +321,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EFB9D2702B55CA0500F75A0D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning SwiftLint not installed, download it from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF3701BA2B528E9600B47173 /* Sources */ = {
@@ -340,7 +364,6 @@
 				EF3701FD2B52D66200B47173 /* UIView+Extensions.swift in Sources */,
 				EF3701EB2B52A3AE00B47173 /* CartAssembly.swift in Sources */,
 				EF3701F92B52D55C00B47173 /* UITableViewCell+Extensions.swift in Sources */,
-				EF3702222B54138500B47173 /* UICollectionView+Extensions.swift in Sources */,
 				EF3701ED2B52A42500B47173 /* ContactsController.swift in Sources */,
 				EF3701EF2B52A49A00B47173 /* ProfileController.swift in Sources */,
 				EF3701C42B528E9600B47173 /* SceneDelegate.swift in Sources */,
@@ -422,7 +445,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -479,7 +502,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -497,12 +520,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pizzeria/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -510,9 +535,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -524,12 +553,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pizzeria/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,9 +568,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

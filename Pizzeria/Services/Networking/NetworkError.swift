@@ -38,4 +38,3 @@ enum NetworkError: Error {
         }
     }
 }
-

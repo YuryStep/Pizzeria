@@ -8,19 +8,19 @@
 import UIKit
 
 protocol BannersViewDelegate: AnyObject {
-    func BannerTapped(_ Banner: Int)
+    func bannerTapped(_ banner: Int)
 }
 
 final class BannersView: UIView {
     weak var delegate: BannersViewDelegate?
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    
+
     private lazy var bannersStackView: UIStackView = {
         let banner1 = UIImageView(image: UIImage(named: "banner0"))
         let banner2 = UIImageView(image: UIImage(named: "banner0"))

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AppNetworkService {
-    func downloadMenu(category: String, completion: @escaping (Result<[MenuItem], NetworkError>) -> ())
+    func downloadMenu(category: String, completion: @escaping (Result<[MenuItem], NetworkError>) -> Void)
     func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
@@ -115,4 +115,3 @@ final class NetworkService: AppNetworkService {
         }
     }
 }
-

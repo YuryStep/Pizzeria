@@ -43,7 +43,7 @@ final class MenuPresenter {
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
-//                view?.reloadMenuTableView() // TODO: FIX FIRST LAUNCH
+//                view?.reloadMenuTableView()
             case let .failure(error):
                 print(error)
             }
@@ -61,7 +61,6 @@ extension MenuPresenter: MenuOutput {
             case let .success(imageData):
                 completion(imageData)
             case .failure:
-                // handleError
                 completion(nil)
             }
         }
@@ -79,7 +78,7 @@ extension MenuPresenter: MenuOutput {
     func didTapOnCurrentCityButton() {
         print("current city Button tapped")
     }
-    
+
     func didTapOnCell(at indexPath: IndexPath) {
         let chosenItem = state.getItem(at: indexPath)
         print("\(String(describing: chosenItem.title)) has been chosen (tapped) by the user")
@@ -91,6 +90,6 @@ private extension MenuCell.DisplayData {
         title = item.title
         description = item.restaurantChain
         price = "от 405 р"
-        imageStringURL = item.imageStringURL 
+        imageStringURL = item.imageStringURL
     }
 }
