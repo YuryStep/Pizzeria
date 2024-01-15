@@ -43,7 +43,7 @@ final class MenuPresenter {
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
-//                view?.reloadMenuTableView() TODO: FIX FIRST LAUNCH
+//                view?.reloadMenuTableView() // TODO: FIX FIRST LAUNCH
             case let .failure(error):
                 print(error)
             }
