@@ -21,12 +21,17 @@
 
 ## Реализация
 
+## Стэк, Ограничения и Архитектура
+Стэк: **Swift 5, UIKit**
+Минимальная версия: **iOS 15**   
+Архитектура: **MVP**   
+
 <table>
  <tr>
- <td align="center"><img src="https://i.imgur.com/EfRSnWS.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/SzgqjMn.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/2t2OUM9.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/fJ6gfcl.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/USYQ6lt.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/V8uCDZb.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/J3pXrsF.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/bfTjIq0.png" width="350"></td>
  </tr>
 </table>
 
