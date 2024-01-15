@@ -22,14 +22,14 @@ final class CategoriesView: UIView {
     }()
 
     private lazy var categoryButtons: [CategoryButton] = {
-            var buttons = [CategoryButton]()
-            for category in Category.allCases {
-                let categoryButton = CategoryButton(category: category)
-                categoryButton.delegate = self
-                buttons.append(categoryButton)
-            }
-            return buttons
-        }()
+        var buttons = [CategoryButton]()
+        for category in Category.allCases {
+            let categoryButton = CategoryButton(category: category)
+            categoryButton.delegate = self
+            buttons.append(categoryButton)
+        }
+        return buttons
+    }()
 
     private lazy var categoriesStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: categoryButtons)
@@ -87,7 +87,7 @@ final class CategoriesView: UIView {
 }
 
 extension CategoriesView: CategoryButtonDelegate {
-    func categoryButtonTapped(_ button: UIButton, category: Category) {
-            delegate?.categoryTapped(category)
-        }
+    func categoryButtonTapped(_: UIButton, category: Category) {
+        delegate?.categoryTapped(category)
     }
+}

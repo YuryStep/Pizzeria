@@ -35,7 +35,6 @@ final class PersistenceService: AppPersistenceService {
     func save<T: Encodable>(_ object: T, forKey key: String) {
         if let encodedObject = try? JSONEncoder().encode(object) {
             UserDefaults.standard.set(encodedObject, forKey: key)
-            print("saved")
         }
     }
 

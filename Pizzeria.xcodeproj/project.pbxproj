@@ -38,6 +38,7 @@
 		EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E02B545CA100586E18 /* PersistenceService.swift */; };
 		EF8CF0E62B54777200586E18 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E52B54777200586E18 /* Menu.swift */; };
 		EFB9D2742B55CEC900F75A0D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */; };
+		EFB9D2762B55D43300F75A0D /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EFB9D2752B55D43300F75A0D /* .swiftformat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		EF8CF0E02B545CA100586E18 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		EF8CF0E52B54777200586E18 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EFB9D2752B55D43300F75A0D /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				EF3701C02B528E9600B47173 /* Pizzeria */,
 				EFB9D2732B55CEC900F75A0D /* .swiftlint.yml */,
+				EFB9D2752B55D43300F75A0D /* .swiftformat */,
 				EF3701BF2B528E9600B47173 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,7 +110,7 @@
 		EF3701C02B528E9600B47173 /* Pizzeria */ = {
 			isa = PBXGroup;
 			children = (
-				EF37022A2B54322300B47173 /* DataManager.swift */,
+				EFB9D2772B55D82F00F75A0D /* DataManager */,
 				EF8CF0DB2B5453EE00586E18 /* Services */,
 				EF3702292B542AC000B47173 /* Models */,
 				EF3701F52B52A62100B47173 /* Modules */,
@@ -254,6 +257,14 @@
 			path = CategoriesView;
 			sourceTree = "<group>";
 		};
+		EFB9D2772B55D82F00F75A0D /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				EF37022A2B54322300B47173 /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -313,6 +324,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB9D2762B55D43300F75A0D /* .swiftformat in Resources */,
 				EFB9D2742B55CEC900F75A0D /* .swiftlint.yml in Resources */,
 				EF3701E42B529FAC00B47173 /* Colors.xcassets in Resources */,
 				EF3701CE2B528E9900B47173 /* LaunchScreen.storyboard in Resources */,

@@ -82,6 +82,5 @@ final class DataManager: AppDataManager {
                 }
             }
         }
-        return
     }
 }

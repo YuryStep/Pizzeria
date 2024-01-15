@@ -11,7 +11,7 @@ protocol CategoryButtonDelegate: AnyObject {
     func categoryButtonTapped(_: UIButton, category: Category)
 }
 
-class CategoryButton: UIButton {
+final class CategoryButton: UIButton {
     weak var delegate: CategoryButtonDelegate?
     var category: Category?
 

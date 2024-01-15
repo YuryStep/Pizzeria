@@ -111,7 +111,7 @@ extension MenuViewController: UITableViewDelegate {
         presenter.didTapOnCell(at: indexPath)
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_: UITableView, viewForHeaderInSection _: Int) -> UIView? {
         let headerView = CategoriesView()
         headerView.delegate = self
         return headerView
@@ -126,8 +126,6 @@ extension MenuViewController: MenuInput {
 
 extension MenuViewController: CategoriesViewDelegate {
     func categoryTapped(_ category: Category) {
-
-        // TODO: Add logic of check if cell's category is correct
         switch category {
         case .burger: scrollTableViewToCell(at: IndexPath(row: 0, section: 0))
         case .desserts: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))

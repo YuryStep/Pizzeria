@@ -61,9 +61,4 @@ final class BannersView: UIView {
             scrollView.heightAnchor.constraint(equalTo: bannersStackView.heightAnchor)
         ])
     }
-
-//    @objc private func settingsButtonTapped() {
-//        delegate?.settingsButtonTapped()
-//    }
-
 }

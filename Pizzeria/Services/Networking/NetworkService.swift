@@ -14,7 +14,7 @@ protocol AppNetworkService {
 
 final class NetworkService: AppNetworkService {
     private enum API {
-        static let key = "5abbbc3716094d93b1ca6e7cbff63ea1"
+        static let key1 = "5abbbc3716094d93b1ca6e7cbff63ea1"
         static let key2 = "bc9b38fb6442421a943eeef365c9dab4"
     }
 
