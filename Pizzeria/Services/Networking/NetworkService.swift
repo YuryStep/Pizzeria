@@ -15,12 +15,13 @@ protocol AppNetworkService {
 final class NetworkService: AppNetworkService {
     private enum API {
         static let key = "5abbbc3716094d93b1ca6e7cbff63ea1"
+        static let key2 = "bc9b38fb6442421a943eeef365c9dab4"
     }
 
     private let searchEndpoint = "https://api.spoonacular.com/"
 
     func downloadMenu(category: String, completion: @escaping (Result<[MenuItem], NetworkError>) -> Void) {
-        let url = URL(string: searchEndpoint + "food/menuItems/search?query=" + "\(category)" + "&number=10&apiKey=" + API.key)
+        let url = URL(string: searchEndpoint + "food/menuItems/search?query=" + "\(category)" + "&number=10&apiKey=" + API.key2)
         fetchData(from: url) { [weak self] dataFetchingResult in
             guard let self else { return }
 

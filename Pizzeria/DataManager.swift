@@ -15,7 +15,6 @@ protocol AppDataManager {
 final class DataManager: AppDataManager {
     private enum Constants {
         static let cachedMenuItemsKey = "cachedMenuItemsKey"
-        static let savedArticlesKey = "savedArticles"
     }
 
     static let shared = DataManager(
@@ -32,27 +31,38 @@ final class DataManager: AppDataManager {
     }
 
     func getMenu(completion: @escaping (Result<[MenuItem], NetworkError>) -> Void) {
-        var positionsFromAllCategories: [MenuItem] = []
-        let dispatchGroup = DispatchGroup()
-        for category in Category.allCases {
-            dispatchGroup.enter()
-            networkService.downloadMenu(category: category.rawValue) { result in
-                defer { dispatchGroup.leave() }
-                switch result {
-                case let .success(menuItems):
-                    positionsFromAllCategories.append(contentsOf: menuItems)
-                case let .failure(error):
-                    completion(.failure(error))
-                    return
+        if let cachedItems: [MenuItem] = persistenceService.readValue(forKey: Constants.cachedMenuItemsKey) {
+//            print("CACHE")
+//            print(cachedItems)
+            completion(.success(cachedItems))
+        } else {
+            var allCategoriesItems: [MenuItem] = []
+            let dispatchGroup = DispatchGroup()
+            for category in Category.allCases {
+                dispatchGroup.enter()
+                networkService.downloadMenu(category: category.rawValue) { result in
+                    defer { dispatchGroup.leave() }
+                    switch result {
+                    case let .success(menuItems):
+                        allCategoriesItems.append(contentsOf: menuItems)
+                    case let .failure(error):
+                        completion(.failure(error))
+                        return
+                    }
                 }
             }
-        }
-        dispatchGroup.notify(queue: .main) {
-            // TODO: Add saving to Storage and method to get from persistence
-            completion(.success(positionsFromAllCategories))
+            dispatchGroup.notify(queue: .main) {
+                self.saveInStorageIfNotEmpty(allCategoriesItems)
+                completion(.success(allCategoriesItems))
+            }
         }
     }
-    
+
+    private func saveInStorageIfNotEmpty(_ items: [MenuItem]) {
+        guard !items.isEmpty else { return }
+        persistenceService.save(items, forKey: Constants.cachedMenuItemsKey)
+    }
+
     func getImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         downloadImageData(from: urlString) { result in
             completion(result)

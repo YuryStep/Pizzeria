@@ -15,8 +15,7 @@ protocol MenuOutput: AnyObject {
     func didTapOnCell(at indexPath: IndexPath)
 }
 
-protocol MenuInput: AnyObject { 
-    func scrollTableToCell(at: IndexPath)
+protocol MenuInput: AnyObject {
     func reloadMenuTableView()
 }
 
@@ -44,27 +43,16 @@ final class MenuViewController: UIViewController {
         return currentCityButton
     }()
 
-    private lazy var bannersView: BannersView = {
-        let view = BannersView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private lazy var categoriesView: CategoriesView = {
-        let view = CategoriesView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
     private lazy var menuTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .pizzeriaBackground
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MenuCell.self)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.tableHeaderView = BannersView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 132))
+        tableView.backgroundColor = .pizzeriaBackground
         tableView.separatorInset = .zero
+        let headerRect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 132)
+        tableView.tableHeaderView = BannersView(frame: headerRect)
         return tableView
     }()
 
@@ -124,7 +112,9 @@ extension MenuViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return CategoriesView()
+        let headerView = CategoriesView()
+        headerView.delegate = self
+        return headerView
     }
 }
 
@@ -132,8 +122,25 @@ extension MenuViewController: MenuInput {
     func reloadMenuTableView() {
         menuTableView.reloadData()
     }
-    
-    func scrollTableToCell(at: IndexPath) {
-        // TODO: Add Logic of scrolling to the firstItem of Category
+}
+
+extension MenuViewController: CategoriesViewDelegate {
+    func categoryTapped(_ category: Category) {
+
+        // TODO: Add logic of check if cell's category is correct
+        switch category {
+        case .burger: scrollTableViewToCell(at: IndexPath(row: 0, section: 0))
+        case .desserts: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))
+        case .drinks: scrollTableViewToCell(at: IndexPath(row: 30, section: 0))
+        case .pizza: scrollTableViewToCell(at: IndexPath(row: 20, section: 0))
+        }
+    }
+
+    // TODO: Move scrolling actions call to presenter
+    private func scrollTableViewToCell(at indexPath: IndexPath) {
+        guard menuTableView.numberOfSections > 0,
+              menuTableView.numberOfRows(inSection: 0) > 0 else { return }
+
+        menuTableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }

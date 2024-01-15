@@ -39,10 +39,11 @@ final class MenuPresenter {
     private func updateMenuState() {
         dataManager.getMenu { [weak self] result in
             guard let self else { return }
+            sleep(3)
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
-                view?.reloadMenuTableView()
+//                view?.reloadMenuTableView() TODO: FIX FIRST LAUNCH
             case let .failure(error):
                 print(error)
             }
@@ -51,6 +52,7 @@ final class MenuPresenter {
 }
 
 extension MenuPresenter: MenuOutput {
+    typealias MenuDisplayData = MenuCell.DisplayData
     func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void) {
         let menuItem = state.getItem(at: indexPath)
         dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
@@ -58,14 +60,12 @@ extension MenuPresenter: MenuOutput {
             switch result {
             case let .success(imageData):
                 completion(imageData)
-            case let .failure(error):
-//                handleError(error)
+            case .failure:
+                // handleError
                 completion(nil)
             }
         }
     }
-
-    typealias MenuDisplayData = MenuCell.DisplayData
 
     func getNumberOfRowsInSection(_: Int) -> Int {
         state.getItemsCount()

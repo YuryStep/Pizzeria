@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoriesViewDelegate: AnyObject {
-    func CategoryTapped(_ Category: Int)
+    func categoryTapped(_ category: Category)
 }
 
 final class CategoriesView: UIView {
@@ -21,21 +21,19 @@ final class CategoriesView: UIView {
         return scrollView
     }()
 
-    private lazy var categoriesStackView: UIStackView = {
-        let button1 = CategoryButton(title: "Пицца",
-                                     textColor: .pizzeriaAccent,
-                                     backgroundColor: .pizzeriaAccentColorTransparent)
-        let button2 = CategoryButton(title: "Комбо",
-                                     textColor: .pizzeriaAccent,
-                                     backgroundColor: .pizzeriaBackground)
-        let button3 = CategoryButton(title: "Десерты",
-                                     textColor: .pizzeriaAccent,
-                                     backgroundColor: .pizzeriaBackground)
-        let button4 = CategoryButton(title: "Напитки",
-                                     textColor: .pizzeriaAccent,
-                                     backgroundColor: .pizzeriaBackground)
+    private lazy var categoryButtons: [CategoryButton] = {
+            var buttons = [CategoryButton]()
+            for category in Category.allCases {
+                let categoryButton = CategoryButton(category: category)
+                categoryButton.delegate = self
+                buttons.append(categoryButton)
+            }
+            return buttons
+        }()
 
-        let stackView = UIStackView(arrangedSubviews: [button1, button2, button3, button4])
+
+    private lazy var categoriesStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: categoryButtons)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -73,8 +71,26 @@ final class CategoriesView: UIView {
         ])
     }
 
-//    @objc private func settingsButtonTapped() {
-//        delegate?.settingsButtonTapped()
-//    }
+    func selectButton(button: UIButton) {
+        for button in categoryButtons {
+            setNormal(button: button)
+        }
+        setSelected(button: button)
+    }
 
+    private func setSelected(button: UIButton) {
+        button.isSelected = true
+    }
+
+    private func setNormal(button: UIButton) {
+        button.isSelected = false
+    }
 }
+
+extension CategoriesView: CategoryButtonDelegate {
+    func categoryButtonTapped(_ button: UIButton, category: Category) {
+//            setSelected(button: button)
+            delegate?.categoryTapped(category)
+        }
+    }
+

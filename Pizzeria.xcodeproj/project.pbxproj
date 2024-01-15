@@ -165,8 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
-				EF3702042B5341C000B47173 /* CategoriesView.swift */,
-				EF3702062B53431400B47173 /* CategoryButton.swift */,
+				EF8CF0EB2B557CC800586E18 /* CategoriesView */,
 				EF3702082B5348AC00B47173 /* BannersView.swift */,
 				EF3701FA2B52D62E00B47173 /* MenuCell.swift */,
 			);
@@ -244,6 +243,15 @@
 				EF8CF0E02B545CA100586E18 /* PersistenceService.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		EF8CF0EB2B557CC800586E18 /* CategoriesView */ = {
+			isa = PBXGroup;
+			children = (
+				EF3702042B5341C000B47173 /* CategoriesView.swift */,
+				EF3702062B53431400B47173 /* CategoryButton.swift */,
+			);
+			path = CategoriesView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,7 +508,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria;
+				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -527,7 +535,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria;
+				PRODUCT_BUNDLE_IDENTIFIER = Iurii.Stepanchuk.Pizzeria2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
