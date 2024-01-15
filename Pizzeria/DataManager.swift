@@ -8,45 +8,72 @@ import UIKit
 import Foundation
 
 protocol AppDataManager {
-    func getLatestProductList() -> [ProductItem]
-    func clearCache()
+    func getMenu(completion: @escaping ((Result<[MenuItem], NetworkError>) -> Void))
+    func getImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void)
 }
 
 final class DataManager: AppDataManager {
-    func clearCache() {
-        // clearCache
+    private enum Constants {
+        static let cachedMenuItemsKey = "cachedMenuItemsKey"
+        static let savedArticlesKey = "savedArticles"
     }
 
-    static let shared = DataManager()
+    static let shared = DataManager(
+        networkService: NetworkService(),
+        persistenceService: PersistenceService()
+    )
 
-    private init() {
+    private let networkService: AppNetworkService
+    private let persistenceService: AppPersistenceService
+
+    private init(networkService: AppNetworkService, persistenceService: AppPersistenceService) {
+        self.networkService = networkService
+        self.persistenceService = persistenceService
     }
 
-    func getLatestProductList() -> [ProductItem] {
-        let stub = [ProductItem(id: 1,
-                                category: .pizza,
-                                title: "Ветчина и грибы",
-                                description: "Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус",
-                                price: "от 345 р",
-                                imageData: UIImage(named: "Buffalo1")!.pngData()!),
-                    ProductItem(id: 2,
-                                category: .pizza,
-                                title: "Баварские колбаски",
-                                description: "Баварские колбаски,ветчина, пикантная пепперони, острая чоризо, моцарелла, томатный соус",
-                                price: "от 345 р",
-                                imageData: UIImage(named: "bavar2")!.pngData()!),
-                    ProductItem(id: 3,
-                                category: .pizza,
-                                title: "Нежный лосось",
-                                description: "Лосось, томаты черри, моцарелла, соус песто",
-                                price: "от 345 р",
-                                imageData: UIImage(named: "losos3")!.pngData()!),
-                    ProductItem(id: 4,
-                                category: .pizza,
-                                title: "Пицца четыре сыра",
-                                description: "Соус Карбонара, Сыр Моцарелла, Сыр Пармезан, Сыр Роккфорти, Сыр Чеддер (тёртый)",
-                                price: "от 345 р",
-                                imageData: UIImage(named: "chees4")!.pngData()!)]
-        return stub
+    func getMenu(completion: @escaping (Result<[MenuItem], NetworkError>) -> Void) {
+        var positionsFromAllCategories: [MenuItem] = []
+        let dispatchGroup = DispatchGroup()
+        for category in Category.allCases {
+            dispatchGroup.enter()
+            networkService.downloadMenu(category: category.rawValue) { result in
+                defer { dispatchGroup.leave() }
+                switch result {
+                case let .success(menuItems):
+                    positionsFromAllCategories.append(contentsOf: menuItems)
+                case let .failure(error):
+                    completion(.failure(error))
+                    return
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            // TODO: Add saving to Storage and method to get from persistence
+            completion(.success(positionsFromAllCategories))
+        }
+    }
+    
+    func getImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        downloadImageData(from: urlString) { result in
+            completion(result)
+        }
+    }
+
+    private func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        networkService.downloadImageData(from: urlString) { [weak self] response in
+            guard let self else { return }
+            switch response {
+            case let .success(imageData):
+                self.persistenceService.saveData(imageData, forKey: urlString)
+                completion(.success(imageData))
+            case let .failure(error):
+                if let imageData = persistenceService.getData(forKey: urlString) {
+                    completion(.success(imageData))
+                } else {
+                    completion(.failure(error))
+                }
+            }
+        }
+        return
     }
 }

@@ -12,7 +12,7 @@ final class MenuCell: UITableViewCell {
         let title: String
         let description: String
         let price: String
-        let image: UIImage
+        let imageStringURL: String
     }
 
     private enum Constants {
@@ -52,6 +52,13 @@ final class MenuCell: UITableViewCell {
         return imageView
     }()
 
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("This class does not support NSCoder")
@@ -63,11 +70,16 @@ final class MenuCell: UITableViewCell {
         backgroundColor = .white
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        clearPreviousConfiguration()
+    }
+
     func configure(with displayData: DisplayData) {
+        loadingIndicator.startAnimating()
         titleLabel.text = displayData.title
         descriptionLabel.text = displayData.description
         priceButton.setTitle(displayData.price, for: .normal)
-        foodImageView.image = displayData.image
     }
 
     func makeUpperCornersRounded(radius: CGFloat = Constants.defaultCornerRadiusOfFirstCell) {
@@ -76,14 +88,35 @@ final class MenuCell: UITableViewCell {
         clipsToBounds = true
     }
 
+    func setImage(_ imageData: Data?) {
+        loadingIndicator.stopAnimating()
+        guard let imageData = imageData, let fetchedImage = UIImage(data: imageData) else {
+            foodImageView.image = .noImageIcon
+            return
+        }
+        foodImageView.image = fetchedImage
+    }
+
+    private func clearPreviousConfiguration() {
+        foodImageView.image = nil
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        priceButton.titleLabel?.text = nil
+    }
+
     private func setupSubviews() {
-        contentView.addSubviews([foodImageView, titleLabel, descriptionLabel, priceButton])
+        contentView.addSubviews([foodImageView, loadingIndicator, titleLabel, descriptionLabel, priceButton])
 
         NSLayoutConstraint.activate([
             foodImageView.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, multiplier: 1),
             foodImageView.heightAnchor.constraint(equalToConstant: 132),
             foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.externalPadding),
+
+            loadingIndicator.widthAnchor.constraint(equalTo: titleLabel.widthAnchor, multiplier: 1),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: 132),
+            loadingIndicator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            loadingIndicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.externalPadding),
 
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: foodImageView.trailingAnchor, multiplier: 1),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.externalPadding),

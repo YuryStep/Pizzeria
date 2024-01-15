@@ -8,8 +8,8 @@
 import Foundation
 
 enum Category: String, Codable, CaseIterable {
-    case pizza = "Пицца"
-    case combo = "Комбо"
-    case desserts = "Десерты"
-    case drinks = "Напитки"
+    case pizza = "Pizza"
+    case burger = "Burger"
+    case desserts = "Desserts"
+    case drinks = "Drinks"
 }

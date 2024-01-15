@@ -10,12 +10,14 @@ import UIKit
 protocol MenuOutput: AnyObject {
     func getNumberOfRowsInSection(_: Int) -> Int
     func getDisplayDataForItem(at indexPath: IndexPath) -> MenuCell.DisplayData
+    func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void)
     func didTapOnCurrentCityButton()
     func didTapOnCell(at indexPath: IndexPath)
 }
 
 protocol MenuInput: AnyObject { 
     func scrollTableToCell(at: IndexPath)
+    func reloadMenuTableView()
 }
 
 final class MenuViewController: UIViewController {
@@ -108,6 +110,9 @@ extension MenuViewController: UITableViewDataSource {
 
         let displayData = presenter.getDisplayDataForItem(at: indexPath)
         cell.configure(with: displayData)
+        presenter.getImageData(at: indexPath) { imageData in
+            cell.setImage(imageData)
+        }
         return cell
     }
 }
@@ -124,6 +129,10 @@ extension MenuViewController: UITableViewDelegate {
 }
 
 extension MenuViewController: MenuInput {
+    func reloadMenuTableView() {
+        menuTableView.reloadData()
+    }
+    
     func scrollTableToCell(at: IndexPath) {
         // TODO: Add Logic of scrolling to the firstItem of Category
     }

@@ -32,9 +32,12 @@
 		EF3702092B5348AC00B47173 /* BannersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702082B5348AC00B47173 /* BannersView.swift */; };
 		EF3702222B54138500B47173 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */; };
 		EF3702242B5429D300B47173 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702232B5429D300B47173 /* MenuPresenter.swift */; };
-		EF3702262B542A5600B47173 /* ProductItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702252B542A5600B47173 /* ProductItem.swift */; };
 		EF3702282B542AA500B47173 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702272B542AA500B47173 /* Category.swift */; };
 		EF37022B2B54322300B47173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37022A2B54322300B47173 /* DataManager.swift */; };
+		EF8CF0D52B5452FA00586E18 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0D42B5452FA00586E18 /* NetworkService.swift */; };
+		EF8CF0D92B54535500586E18 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0D82B54535500586E18 /* NetworkError.swift */; };
+		EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E02B545CA100586E18 /* PersistenceService.swift */; };
+		EF8CF0E62B54777200586E18 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E52B54777200586E18 /* Menu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,9 +68,12 @@
 		EF3702082B5348AC00B47173 /* BannersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersView.swift; sourceTree = "<group>"; };
 		EF3702212B54138500B47173 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		EF3702232B5429D300B47173 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
-		EF3702252B542A5600B47173 /* ProductItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductItem.swift; sourceTree = "<group>"; };
 		EF3702272B542AA500B47173 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		EF37022A2B54322300B47173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		EF8CF0D42B5452FA00586E18 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		EF8CF0D82B54535500586E18 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		EF8CF0E02B545CA100586E18 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
+		EF8CF0E52B54777200586E18 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				EF37022A2B54322300B47173 /* DataManager.swift */,
+				EF8CF0DB2B5453EE00586E18 /* Services */,
 				EF3702292B542AC000B47173 /* Models */,
 				EF3701F52B52A62100B47173 /* Modules */,
 				EF3701DF2B5295BC00B47173 /* Extensions */,
@@ -207,10 +214,36 @@
 		EF3702292B542AC000B47173 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EF3702252B542A5600B47173 /* ProductItem.swift */,
 				EF3702272B542AA500B47173 /* Category.swift */,
+				EF8CF0E52B54777200586E18 /* Menu.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EF8CF0DA2B5453DB00586E18 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EF8CF0D42B5452FA00586E18 /* NetworkService.swift */,
+				EF8CF0D82B54535500586E18 /* NetworkError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EF8CF0DB2B5453EE00586E18 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EF8CF0E22B545CA900586E18 /* Persistence */,
+				EF8CF0DA2B5453DB00586E18 /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EF8CF0E22B545CA900586E18 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				EF8CF0E02B545CA100586E18 /* PersistenceService.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +318,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF3701DE2B5295AE00B47173 /* UIViewController+Extensions.swift in Sources */,
+				EF8CF0D92B54535500586E18 /* NetworkError.swift in Sources */,
 				EF3701F12B52A52400B47173 /* CartController.swift in Sources */,
-				EF3702262B542A5600B47173 /* ProductItem.swift in Sources */,
 				EF3702072B53431400B47173 /* CategoryButton.swift in Sources */,
+				EF8CF0E62B54777200586E18 /* Menu.swift in Sources */,
 				EF3702242B5429D300B47173 /* MenuPresenter.swift in Sources */,
 				EF3701FF2B52D90000B47173 /* UILabel+Extensions.swift in Sources */,
 				EF3702092B5348AC00B47173 /* BannersView.swift in Sources */,
@@ -307,7 +341,9 @@
 				EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */,
 				EF37022B2B54322300B47173 /* DataManager.swift in Sources */,
 				EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */,
+				EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */,
 				EF3701F72B52D51100B47173 /* UITableView+Extensions.swift in Sources */,
+				EF8CF0D52B5452FA00586E18 /* NetworkService.swift in Sources */,
 				EF3702282B542AA500B47173 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

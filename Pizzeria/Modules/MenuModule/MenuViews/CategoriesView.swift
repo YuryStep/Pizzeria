@@ -60,8 +60,8 @@ final class CategoriesView: UIView {
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
 
             scrollView.leadingAnchor.constraint(equalTo: categoriesStackView.leadingAnchor),

@@ -10,13 +10,13 @@ import UIKit
 
 final class MenuPresenter {
     private struct State {
-        private var items = [ProductItem]()
+        private var items = [MenuItem]()
 
-        mutating func updateItems(with items: [ProductItem]) {
+        mutating func updateItems(with items: [MenuItem]) {
             self.items = items
         }
 
-        func getItem(at indexPath: IndexPath) -> ProductItem {
+        func getItem(at indexPath: IndexPath) -> MenuItem {
             return items[indexPath.row]
         }
 
@@ -33,16 +33,38 @@ final class MenuPresenter {
         self.view = view
         self.dataManager = dataManager
         state = State()
-        getLatestProductList()
+        updateMenuState()
     }
-    
-    private func getLatestProductList() {
-        let productList = dataManager.getLatestProductList()
-        state.updateItems(with: productList)
+
+    private func updateMenuState() {
+        dataManager.getMenu { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case let .success(menuItems):
+                state.updateItems(with: menuItems)
+                view?.reloadMenuTableView()
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
 }
 
 extension MenuPresenter: MenuOutput {
+    func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void) {
+        let menuItem = state.getItem(at: indexPath)
+        dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
+            guard let self, state.getItem(at: indexPath) == menuItem else { return }
+            switch result {
+            case let .success(imageData):
+                completion(imageData)
+            case let .failure(error):
+//                handleError(error)
+                completion(nil)
+            }
+        }
+    }
+
     typealias MenuDisplayData = MenuCell.DisplayData
 
     func getNumberOfRowsInSection(_: Int) -> Int {
@@ -50,11 +72,8 @@ extension MenuPresenter: MenuOutput {
     }
 
     func getDisplayDataForItem(at indexPath: IndexPath) -> MenuDisplayData {
-        let productItem = state.getItem(at: indexPath)
-        return MenuDisplayData(title: productItem.title,
-                               description: productItem.description,
-                               price: String(productItem.price),
-                               image: UIImage(data: productItem.imageData)!)
+        let menuItem = state.getItem(at: indexPath)
+        return MenuDisplayData(menuItem)
     }
 
     func didTapOnCurrentCityButton() {
@@ -63,6 +82,15 @@ extension MenuPresenter: MenuOutput {
     
     func didTapOnCell(at indexPath: IndexPath) {
         let chosenItem = state.getItem(at: indexPath)
-        print("\(chosenItem.title) has been chosen (tapped) by the user")
+        print("\(String(describing: chosenItem.title)) has been chosen (tapped) by the user")
+    }
+}
+
+private extension MenuCell.DisplayData {
+    init(_ item: MenuItem) {
+        title = item.title
+        description = item.restaurantChain
+        price = "от 405 р"
+        imageStringURL = item.imageStringURL 
     }
 }
