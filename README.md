@@ -1,5 +1,5 @@
 # Pizzeria
-**Главный экран для приложения доставки еды**. 
+**Главный экран для приложения доставки еды. Тестовое задание на позицию iOS Developer.**. 
 
 ## Техническое задание
 * Реализовать главный экран для приложения доставки еды
@@ -21,14 +21,23 @@
 
 ## Реализация
 
+## Стэк, Ограничения и Архитектура
+Стэк: **Swift 5, UIKit**
+Минимальная версия: **iOS 15**   
+Архитектура: **MVP**   
+
 <table>
  <tr>
- <td align="center"><img src="https://i.imgur.com/EfRSnWS.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/SzgqjMn.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/2t2OUM9.png" width="350"></td>
- <td align="center"><img src="https://i.imgur.com/fJ6gfcl.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/USYQ6lt.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/V8uCDZb.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/J3pXrsF.png" width="350"></td>
+ <td align="center"><img src="https://i.imgur.com/bfTjIq0.png" width="350"></td>
  </tr>
 </table>
+
+## Video
+
+https://github.com/YuryStep/Pizzeria/assets/112872920/885b6bcb-d437-4c97-9603-85313ba8af50
 
 ###### Примечания
 * *В связи с ограничениями API, для снижения количества обращений к серверу загрузка данных из сети происходит только при первом открытии, а далее подгружается из памяти (логику можно изменить при необходимости)*
@@ -49,14 +58,12 @@
 * Сборка вынесена в отдельный слой PizzeriaAssembly
 
 ## Что еще планируется реализовать технически
+* В связи с ограниченными сроками на выполнение тестового задания код все еще требует дополнительный **рефакторинг**.
 * Заменить способ работы с многопоточностью с GCD на **`Async await`**
 * Заменить у таблицы DataSource на **DiffableDataSource**
 * Добавить **CollectionView**
 * Доработать **Layout** - шрифты, отступы
-* В связи с ограниченными сроками на выполнение тестового задания код все еще требует дополнительный **рефакторинг**.
 * Для сохранения чистоты кода добавить в проект  **`Swiftlint`** и **`SwiftFormat`**
-
-
 
 ## Другие PET проекты
 * Более крупный (по функциональности и инструментам) проект для ознакомления доступен по ссылке: https://github.com/YuryStep/NewsCatcher
