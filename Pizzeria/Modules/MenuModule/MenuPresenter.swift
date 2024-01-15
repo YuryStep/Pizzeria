@@ -43,7 +43,7 @@ final class MenuPresenter {
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
-//                view?.reloadMenuTableView()
+                view?.reloadMenuTableView()
             case let .failure(error):
                 print(error)
             }
@@ -53,6 +53,16 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuOutput {
     typealias MenuDisplayData = MenuCell.DisplayData
+
+    func getNumberOfRowsInSection(_: Int) -> Int {
+        state.getItemsCount()
+    }
+
+    func getDisplayDataForItem(at indexPath: IndexPath) -> MenuDisplayData {
+        let menuItem = state.getItem(at: indexPath)
+        return MenuDisplayData(menuItem)
+    }
+
     func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void) {
         let menuItem = state.getItem(at: indexPath)
         dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
@@ -66,22 +76,13 @@ extension MenuPresenter: MenuOutput {
         }
     }
 
-    func getNumberOfRowsInSection(_: Int) -> Int {
-        state.getItemsCount()
-    }
-
-    func getDisplayDataForItem(at indexPath: IndexPath) -> MenuDisplayData {
-        let menuItem = state.getItem(at: indexPath)
-        return MenuDisplayData(menuItem)
-    }
-
     func didTapOnCurrentCityButton() {
         print("current city Button tapped")
     }
 
     func didTapOnCell(at indexPath: IndexPath) {
         let chosenItem = state.getItem(at: indexPath)
-        print("\(String(describing: chosenItem.title)) has been chosen (tapped) by the user")
+        print("\(chosenItem.title) has been chosen (tapped) by the user")
     }
 }
 

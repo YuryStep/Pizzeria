@@ -56,15 +56,15 @@ final class DataManager: AppDataManager {
         }
     }
 
-    private func saveInStorageIfNotEmpty(_ items: [MenuItem]) {
-        guard !items.isEmpty else { return }
-        persistenceService.save(items, forKey: Constants.cachedMenuItemsKey)
-    }
-
     func getImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         downloadImageData(from: urlString) { result in
             completion(result)
         }
+    }
+
+    private func saveInStorageIfNotEmpty(_ items: [MenuItem]) {
+        guard !items.isEmpty else { return }
+        persistenceService.save(items, forKey: Constants.cachedMenuItemsKey)
     }
 
     private func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
