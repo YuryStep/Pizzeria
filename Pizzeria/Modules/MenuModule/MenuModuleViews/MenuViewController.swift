@@ -16,7 +16,7 @@ protocol MenuOutput: AnyObject {
 }
 
 protocol MenuInput: AnyObject {
-    func reloadMenuTableView()
+    func reloadMenuItems()
 }
 
 final class MenuViewController: UIViewController {
@@ -27,6 +27,7 @@ final class MenuViewController: UIViewController {
     }
 
     var presenter: MenuOutput!
+    private var menuView: MenuView!
 
     private lazy var currentCityButton: UIButton = {
         let currentCityButton = UIButton(type: .system)
@@ -43,23 +44,24 @@ final class MenuViewController: UIViewController {
         return currentCityButton
     }()
 
-    private lazy var menuTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(MenuCell.self)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .pizzeriaBackground
-        tableView.separatorInset = .zero
-        let headerRect = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 132)
-        tableView.tableHeaderView = BannersView(frame: headerRect)
-        return tableView
-    }()
+    init(menuView: MenuView) {
+        super.init(nibName: nil, bundle: nil)
+        self.menuView = menuView
+    }
+
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("This class does not support NSCoder")
+    }
+
+    override func loadView() {
+        view = menuView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupView()
+        assignDelegationAndDataSource()
     }
 
     private func setupNavigationBar() {
@@ -67,21 +69,20 @@ final class MenuViewController: UIViewController {
         navigationItem.leftBarButtonItem = barButton
     }
 
-    private func setupView() {
-        view.backgroundColor = .pizzeriaBackground
-        view.addSubview(menuTableView)
-        let guide = view.safeAreaLayoutGuide
-
-        NSLayoutConstraint.activate([
-            menuTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor),
-            menuTableView.topAnchor.constraint(equalTo: guide.topAnchor),
-            menuTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
-        ])
+    private func assignDelegationAndDataSource() {
+        menuView.tableView.register(MenuCell.self)
+        menuView.tableView.delegate = self
+        menuView.tableView.dataSource = self
     }
 
     @objc private func currentCityButtonTapped() {
         presenter.didTapOnCurrentCityButton()
+    }
+}
+
+extension MenuViewController: MenuInput {
+    func reloadMenuItems() {
+        menuView.reloadTableView()
     }
 }
 
@@ -118,12 +119,6 @@ extension MenuViewController: UITableViewDelegate {
     }
 }
 
-extension MenuViewController: MenuInput {
-    func reloadMenuTableView() {
-        menuTableView.reloadData()
-    }
-}
-
 extension MenuViewController: CategoriesViewDelegate {
     func categoryTapped(_ category: Category) {
         switch category {
@@ -134,11 +129,10 @@ extension MenuViewController: CategoriesViewDelegate {
         }
     }
 
-    // TODO: Move scrolling actions call to presenter
     private func scrollTableViewToCell(at indexPath: IndexPath) {
-        guard menuTableView.numberOfSections > 0,
-              menuTableView.numberOfRows(inSection: 0) > 0 else { return }
+        guard menuView.tableView.numberOfSections > 0,
+              menuView.tableView.numberOfRows(inSection: 0) > 0 else { return }
 
-        menuTableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        menuView.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
 }
