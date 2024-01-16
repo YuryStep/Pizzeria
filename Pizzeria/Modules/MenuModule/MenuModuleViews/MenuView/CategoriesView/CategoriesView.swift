@@ -69,25 +69,27 @@ final class CategoriesView: UIView {
             scrollView.heightAnchor.constraint(equalTo: categoriesStackView.heightAnchor)
         ])
     }
-
-    func selectButton(button: UIButton) {
-        for button in categoryButtons {
-            setNormal(button: button)
-        }
-        setSelected(button: button)
-    }
-
-    private func setSelected(button: UIButton) {
-        button.isSelected = true
-    }
-
-    private func setNormal(button: UIButton) {
-        button.isSelected = false
-    }
 }
 
 extension CategoriesView: CategoryButtonDelegate {
-    func categoryButtonTapped(_: UIButton, category: Category) {
+    func categoryButtonTapped(_ button: CategoryButton, category: Category) {
+        selectButton(button: button)
         delegate?.categoryTapped(category)
+    }
+
+    private func selectButton(button: CategoryButton) {
+        guard let buttons = categoriesStackView.arrangedSubviews as? [CategoryButton] else { return }
+        for button in buttons {
+            setNormal(button: button)
+        }
+        setLastTapped(button: button)
+    }
+
+    private func setLastTapped(button: CategoryButton) {
+        button.isLastTapped = true
+    }
+
+    private func setNormal(button: CategoryButton) {
+        button.isLastTapped = false
     }
 }

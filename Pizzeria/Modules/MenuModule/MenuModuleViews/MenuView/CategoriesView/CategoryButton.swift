@@ -8,12 +8,18 @@
 import UIKit
 
 protocol CategoryButtonDelegate: AnyObject {
-    func categoryButtonTapped(_: UIButton, category: Category)
+    func categoryButtonTapped(_: CategoryButton, category: Category)
 }
 
 final class CategoryButton: UIButton {
     weak var delegate: CategoryButtonDelegate?
     var category: Category?
+
+    var isLastTapped = false {
+        didSet {
+            changeAppearance()
+        }
+    }
 
     init(category: Category) {
         super.init(frame: .zero)
@@ -53,6 +59,10 @@ final class CategoryButton: UIButton {
         var config = UIButton.Configuration.plain()
         config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         configuration = config
+    }
+
+    private func changeAppearance() {
+        backgroundColor = isLastTapped ? .pizzeriaAccentColorTransparent : .clear
     }
 
     @objc private func buttonTapped() {
