@@ -39,7 +39,6 @@ final class MenuPresenter {
     private func updateMenuState() {
         dataManager.getMenu { [weak self] result in
             guard let self else { return }
-            sleep(3)
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
