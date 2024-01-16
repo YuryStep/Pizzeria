@@ -14,7 +14,8 @@ enum MenuAssembly {
     }
 
     static func makeModule() -> UIViewController {
-        let menuViewController = MenuViewController()
+        let menuView = MenuView()
+        let menuViewController = MenuViewController(menuView: menuView)
         let presenter = MenuPresenter(view: menuViewController, dataManager: DataManager.shared)
         menuViewController.presenter = presenter
 

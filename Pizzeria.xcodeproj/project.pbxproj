@@ -33,6 +33,7 @@
 		EF3702242B5429D300B47173 /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702232B5429D300B47173 /* MenuPresenter.swift */; };
 		EF3702282B542AA500B47173 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3702272B542AA500B47173 /* Category.swift */; };
 		EF37022B2B54322300B47173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF37022A2B54322300B47173 /* DataManager.swift */; };
+		EF8116D42B56F24A00808D3D /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8116D32B56F24A00808D3D /* MenuView.swift */; };
 		EF8CF0D52B5452FA00586E18 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0D42B5452FA00586E18 /* NetworkService.swift */; };
 		EF8CF0D92B54535500586E18 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0D82B54535500586E18 /* NetworkError.swift */; };
 		EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8CF0E02B545CA100586E18 /* PersistenceService.swift */; };
@@ -70,6 +71,7 @@
 		EF3702232B5429D300B47173 /* MenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		EF3702272B542AA500B47173 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		EF37022A2B54322300B47173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		EF8116D32B56F24A00808D3D /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		EF8CF0D42B5452FA00586E18 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EF8CF0D82B54535500586E18 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EF8CF0E02B545CA100586E18 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
@@ -159,20 +161,18 @@
 			children = (
 				EF3701D82B5291FB00B47173 /* MenuAssembly.swift */,
 				EF3702232B5429D300B47173 /* MenuPresenter.swift */,
-				EF3701E52B52A13C00B47173 /* MenuViews */,
+				EF3701E52B52A13C00B47173 /* MenuModuleViews */,
 			);
 			path = MenuModule;
 			sourceTree = "<group>";
 		};
-		EF3701E52B52A13C00B47173 /* MenuViews */ = {
+		EF3701E52B52A13C00B47173 /* MenuModuleViews */ = {
 			isa = PBXGroup;
 			children = (
 				EF3701DA2B52949500B47173 /* MenuViewController.swift */,
-				EF8CF0EB2B557CC800586E18 /* CategoriesView */,
-				EF3702082B5348AC00B47173 /* BannersView.swift */,
-				EF3701FA2B52D62E00B47173 /* MenuCell.swift */,
+				EF8116D52B57090200808D3D /* MenuView */,
 			);
-			path = MenuViews;
+			path = MenuModuleViews;
 			sourceTree = "<group>";
 		};
 		EF3701F22B52A5EB00B47173 /* ContactsModule */ = {
@@ -220,6 +220,17 @@
 				EF8CF0E52B54777200586E18 /* Menu.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EF8116D52B57090200808D3D /* MenuView */ = {
+			isa = PBXGroup;
+			children = (
+				EF8116D32B56F24A00808D3D /* MenuView.swift */,
+				EF3701FA2B52D62E00B47173 /* MenuCell.swift */,
+				EF8CF0EB2B557CC800586E18 /* CategoriesView */,
+				EF3702082B5348AC00B47173 /* BannersView.swift */,
+			);
+			path = MenuView;
 			sourceTree = "<group>";
 		};
 		EF8CF0DA2B5453DB00586E18 /* Networking */ = {
@@ -382,6 +393,7 @@
 				EF3701FB2B52D62E00B47173 /* MenuCell.swift in Sources */,
 				EF3702052B5341C000B47173 /* CategoriesView.swift in Sources */,
 				EF3701D62B528FFA00B47173 /* PizzeriaAssembly.swift in Sources */,
+				EF8116D42B56F24A00808D3D /* MenuView.swift in Sources */,
 				EF37022B2B54322300B47173 /* DataManager.swift in Sources */,
 				EF3701E72B52A35A00B47173 /* ContactsAssembly.swift in Sources */,
 				EF8CF0E12B545CA100586E18 /* PersistenceService.swift in Sources */,

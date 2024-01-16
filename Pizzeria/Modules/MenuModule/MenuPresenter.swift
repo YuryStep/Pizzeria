@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 final class MenuPresenter {
     private struct State {
@@ -42,7 +41,7 @@ final class MenuPresenter {
             switch result {
             case let .success(menuItems):
                 state.updateItems(with: menuItems)
-                view?.reloadMenuTableView()
+                view?.reloadMenuItems()
             case let .failure(error):
                 print(error)
             }

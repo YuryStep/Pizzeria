@@ -30,18 +30,18 @@ final class MenuViewController: UIViewController {
     private var menuView: MenuView!
 
     private lazy var currentCityButton: UIButton = {
-        let currentCityButton = UIButton(type: .system)
-        currentCityButton.semanticContentAttribute = .forceRightToLeft
-        currentCityButton.addTarget(self, action: #selector(currentCityButtonTapped), for: .touchUpInside)
+        let cityButton = UIButton(type: .system)
+        cityButton.semanticContentAttribute = .forceRightToLeft
+        cityButton.addTarget(self, action: #selector(currentCityButtonTapped), for: .touchUpInside)
 
         var config = UIButton.Configuration.plain()
         config.title = Constants.currentCityTitle
         config.image = UIImage(systemName: Constants.currentCityButtonImage)
         config.baseForegroundColor = .black
         config.imagePadding = Constants.currentCityTitleImagePadding
+        cityButton.configuration = config
 
-        currentCityButton.configuration = config
-        return currentCityButton
+        return cityButton
     }()
 
     init(menuView: MenuView) {
@@ -124,8 +124,8 @@ extension MenuViewController: CategoriesViewDelegate {
         switch category {
         case .burger: scrollTableViewToCell(at: IndexPath(row: 0, section: 0))
         case .desserts: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))
-        case .drinks: scrollTableViewToCell(at: IndexPath(row: 30, section: 0))
         case .pizza: scrollTableViewToCell(at: IndexPath(row: 20, section: 0))
+        case .drinks: scrollTableViewToCell(at: IndexPath(row: 30, section: 0))
         }
     }
 
