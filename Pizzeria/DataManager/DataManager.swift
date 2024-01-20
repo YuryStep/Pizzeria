@@ -68,16 +68,16 @@ final class DataManager: AppDataManager {
     }
 
     private func downloadImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
-        networkService.downloadImageData(from: urlString) { [weak self] response in
-            guard let self else { return }
-            switch response {
-            case let .success(imageData):
-                self.persistenceService.saveData(imageData, forKey: urlString)
-                completion(.success(imageData))
-            case let .failure(error):
-                if let imageData = persistenceService.getData(forKey: urlString) {
+        if let imageData = persistenceService.getData(forKey: urlString) {
+            completion(.success(imageData))
+        } else {
+            networkService.downloadImageData(from: urlString) { [weak self] response in
+                guard let self else { return }
+                switch response {
+                case let .success(imageData):
+                    self.persistenceService.saveData(imageData, forKey: urlString)
                     completion(.success(imageData))
-                } else {
+                case let .failure(error):
                     completion(.failure(error))
                 }
             }
