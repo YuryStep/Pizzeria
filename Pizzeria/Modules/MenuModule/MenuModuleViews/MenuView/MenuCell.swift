@@ -8,11 +8,13 @@
 import UIKit
 
 final class MenuCell: UITableViewCell {
-    struct DisplayData {
+    struct DisplayData: Equatable {
+        let id: Int
         let title: String
         let description: String
         let price: String
         let imageStringURL: String
+        var imageData: Data?
     }
 
     private enum Constants {
@@ -88,7 +90,13 @@ final class MenuCell: UITableViewCell {
         clipsToBounds = true
     }
 
-    func setImage(_ imageData: Data?) {
+    func setImage(with displayData: DisplayData?) {
+        if let imageData = displayData?.imageData {
+            setImage(imageData)
+        }
+    }
+
+    private func setImage(_ imageData: Data?) {
         loadingIndicator.stopAnimating()
         guard let imageData = imageData, let fetchedImage = UIImage(data: imageData) else {
             foodImageView.image = .noImageIcon

@@ -27,7 +27,7 @@ struct MenuItem: Codable, Hashable, Identifiable {
     let title: String
     let imageStringURL: String
     let restaurantChain: String
-    let imageData: Data?
+    var imageData: Data?
     var price: String?
     var category: String?
 }

@@ -10,7 +10,7 @@ import UIKit
 protocol MenuOutput: AnyObject {
     func getNumberOfRowsInSection(_: Int) -> Int
     func getDisplayDataForItem(at indexPath: IndexPath) -> MenuCell.DisplayData
-    func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void)
+    func getDisplayDataWithImage(at indexPath: IndexPath, completion: @escaping (MenuCell.DisplayData?) -> Void)
     func didTapOnCurrentCityButton()
     func didTapOnCell(at indexPath: IndexPath)
 }
@@ -99,9 +99,13 @@ extension MenuViewController: UITableViewDataSource {
 
         let displayData = presenter.getDisplayDataForItem(at: indexPath)
         cell.configure(with: displayData)
-        presenter.getImageData(at: indexPath) { imageData in
-            cell.setImage(imageData)
+
+        presenter.getDisplayDataWithImage(at: indexPath) { displayDataWithImage in
+//            if let displayDataWithImage = displayDataWithImage, displayData.id == displayDataWithImage.id {
+                cell.setImage(with: displayDataWithImage)
+//            }
         }
+
         return cell
     }
 }
@@ -123,8 +127,8 @@ extension MenuViewController: CategoriesViewDelegate {
     func categoryTapped(_ category: Category) {
         switch category {
         case .burger: scrollTableViewToCell(at: IndexPath(row: 0, section: 0))
-        case .desserts: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))
-        case .pizza: scrollTableViewToCell(at: IndexPath(row: 20, section: 0))
+        case .desserts: scrollTableViewToCell(at: IndexPath(row: 20, section: 0))
+        case .pizza: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))
         case .drinks: scrollTableViewToCell(at: IndexPath(row: 30, section: 0))
         }
     }

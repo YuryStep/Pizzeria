@@ -8,14 +8,20 @@
 import Foundation
 
 final class MenuPresenter {
-    private struct State {
-        private var items = [MenuItem]()
+    typealias MenuDisplayData = MenuCell.DisplayData
 
-        mutating func updateItems(with items: [MenuItem]) {
+    private struct State {
+        var items = [MenuDisplayData]()
+
+        mutating func updateItems(with items: [MenuDisplayData]) {
             self.items = items
         }
 
-        func getItem(at indexPath: IndexPath) -> MenuItem {
+        mutating func setImageDataForItem(at indexPath: IndexPath, data: Data) {
+            items[indexPath.row].imageData = data
+        }
+
+        func getItem(at indexPath: IndexPath) -> MenuDisplayData {
             return items[indexPath.row]
         }
 
@@ -40,34 +46,43 @@ final class MenuPresenter {
             guard let self else { return }
             switch result {
             case let .success(menuItems):
-                state.updateItems(with: menuItems)
-                view?.reloadMenuItems()
+                updateMenuItemsWithoutImages(using: menuItems)
             case let .failure(error):
                 print(error)
             }
         }
     }
+
+    private func updateMenuItemsWithoutImages(using menuItems: [MenuItem]) {
+        var updatedState = [MenuDisplayData]()
+        menuItems.forEach { menuItem in
+            let displayDataItem = MenuDisplayData(menuItem)
+            updatedState.append(displayDataItem)
+        }
+        state.updateItems(with: updatedState)
+        view?.reloadMenuItems()
+    }
+
 }
 
 extension MenuPresenter: MenuOutput {
-    typealias MenuDisplayData = MenuCell.DisplayData
-
     func getNumberOfRowsInSection(_: Int) -> Int {
         state.getItemsCount()
     }
 
     func getDisplayDataForItem(at indexPath: IndexPath) -> MenuDisplayData {
-        let menuItem = state.getItem(at: indexPath)
-        return MenuDisplayData(menuItem)
+        return state.getItem(at: indexPath)
     }
 
-    func getImageData(at indexPath: IndexPath, completion: @escaping (Data?) -> Void) {
+    func getDisplayDataWithImage(at indexPath: IndexPath, completion: @escaping (MenuDisplayData?) -> Void) {
         let menuItem = state.getItem(at: indexPath)
         dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
             guard let self, state.getItem(at: indexPath) == menuItem else { return }
             switch result {
             case let .success(imageData):
-                completion(imageData)
+                state.setImageDataForItem(at: indexPath, data: imageData)
+                let displayDataWithImage = state.getItem(at: indexPath)
+                completion(displayDataWithImage)
             case .failure:
                 completion(nil)
             }
@@ -86,9 +101,11 @@ extension MenuPresenter: MenuOutput {
 
 private extension MenuCell.DisplayData {
     init(_ item: MenuItem) {
+        id = item.id
         title = item.title
         description = item.restaurantChain
         price = "от 405 р"
         imageStringURL = item.imageStringURL
+        imageData = item.imageData
     }
 }
