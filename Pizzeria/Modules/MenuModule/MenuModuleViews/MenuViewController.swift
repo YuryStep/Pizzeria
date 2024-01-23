@@ -12,6 +12,7 @@ protocol MenuOutput: AnyObject {
     func didTapOnCell(at indexPath: IndexPath)
     func getSnapshotItems() -> [MenuCell.DisplayData]
     func updateMenuState()
+    func getFirstRowForCell(with category: Category) -> Int?
 }
 
 protocol MenuInput: AnyObject {
@@ -106,7 +107,7 @@ final class MenuViewController: UIViewController {
     }
 }
 
-extension MenuViewController: MenuInput { }
+extension MenuViewController: MenuInput {}
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -124,12 +125,9 @@ extension MenuViewController: UITableViewDelegate {
 
 extension MenuViewController: CategoriesViewDelegate {
     func categoryTapped(_ category: Category) {
-        switch category {
-        case .burger: scrollTableViewToCell(at: IndexPath(row: 0, section: 0))
-        case .desserts: scrollTableViewToCell(at: IndexPath(row: 20, section: 0))
-        case .pizza: scrollTableViewToCell(at: IndexPath(row: 10, section: 0))
-        case .drinks: scrollTableViewToCell(at: IndexPath(row: 30, section: 0))
-        }
+        guard let row = presenter.getFirstRowForCell(with: category) else { return }
+        let section = Section.main.rawValue
+        scrollTableViewToCell(at: IndexPath(row: row, section: section))
     }
 
     private func scrollTableViewToCell(at indexPath: IndexPath) {

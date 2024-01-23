@@ -14,6 +14,7 @@ final class MenuCell: UITableViewCell {
         let description: String
         let price: String
         let imageStringURL: String
+        var category: String? = "Uncategorized"
         var imageData: Data?
     }
 
@@ -26,7 +27,6 @@ final class MenuCell: UITableViewCell {
     private lazy var titleLabel: UILabel = .init(textStyle: .title3)
     private lazy var descriptionLabel = UILabel(textStyle: .subheadline)
 
-    // TODO: Need Refactoring:
     private lazy var priceButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

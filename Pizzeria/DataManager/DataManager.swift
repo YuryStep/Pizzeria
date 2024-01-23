@@ -38,11 +38,13 @@ final class DataManager: AppDataManager {
             let dispatchGroup = DispatchGroup()
             for category in Category.allCases {
                 dispatchGroup.enter()
-                networkService.downloadMenu(category: category.rawValue) { result in
+                networkService.downloadMenu(category: category.rawValue) { [weak self] result in
+                    guard let self else { return }
                     defer { dispatchGroup.leave() }
                     switch result {
                     case let .success(menuItems):
-                        allCategoriesItems.append(contentsOf: menuItems)
+                        let itemsWithCategories = addCategoryTo(menuItems, category: category)
+                        allCategoriesItems.append(contentsOf: itemsWithCategories)
                     case let .failure(error):
                         completion(.failure(error))
                         return
@@ -59,6 +61,14 @@ final class DataManager: AppDataManager {
     func getImageData(from urlString: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
         downloadImageData(from: urlString) { result in
             completion(result)
+        }
+    }
+
+    private func addCategoryTo(_ items: [MenuItem], category: Category) -> [MenuItem] {
+        return items.map { item in
+            var newItem = item
+            newItem.category = category.rawValue
+            return newItem
         }
     }
 
