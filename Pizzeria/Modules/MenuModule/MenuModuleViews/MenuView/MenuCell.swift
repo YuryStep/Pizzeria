@@ -8,7 +8,7 @@
 import UIKit
 
 final class MenuCell: UITableViewCell {
-    struct DisplayData: Equatable {
+    struct DisplayData: Equatable, Hashable {
         let id: Int
         let title: String
         let description: String
@@ -39,10 +39,7 @@ final class MenuCell: UITableViewCell {
         button.layer.borderColor = accentColor.cgColor
 
         var config = UIButton.Configuration.plain()
-        config.contentInsets = NSDirectionalEdgeInsets(top: 5,
-                                                       leading: 10,
-                                                       bottom: 5,
-                                                       trailing: 10)
+        config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         button.configuration = config
         return button
     }()
@@ -82,6 +79,7 @@ final class MenuCell: UITableViewCell {
         titleLabel.text = displayData.title
         descriptionLabel.text = displayData.description
         priceButton.setTitle(displayData.price, for: .normal)
+        setImage(with: displayData)
     }
 
     func makeUpperCornersRounded(radius: CGFloat = Constants.defaultCornerRadiusOfFirstCell) {
@@ -90,19 +88,13 @@ final class MenuCell: UITableViewCell {
         clipsToBounds = true
     }
 
-    func setImage(with displayData: DisplayData?) {
+    private func setImage(with displayData: DisplayData?) {
         if let imageData = displayData?.imageData {
-            setImage(imageData)
-        }
-    }
-
-    private func setImage(_ imageData: Data?) {
-        loadingIndicator.stopAnimating()
-        guard let imageData = imageData, let fetchedImage = UIImage(data: imageData) else {
-            foodImageView.image = .noImageIcon
+            loadingIndicator.stopAnimating()
+            foodImageView.image = UIImage(data: imageData)
             return
         }
-        foodImageView.image = fetchedImage
+        foodImageView.image = .noImageIcon
     }
 
     private func clearPreviousConfiguration() {

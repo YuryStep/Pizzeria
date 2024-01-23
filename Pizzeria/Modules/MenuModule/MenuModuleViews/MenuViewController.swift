@@ -8,26 +8,43 @@
 import UIKit
 
 protocol MenuOutput: AnyObject {
-    func getNumberOfRowsInSection(_: Int) -> Int
-    func getDisplayDataForItem(at indexPath: IndexPath) -> MenuCell.DisplayData
-    func getDisplayDataWithImage(at indexPath: IndexPath, completion: @escaping (MenuCell.DisplayData?) -> Void)
     func didTapOnCurrentCityButton()
     func didTapOnCell(at indexPath: IndexPath)
+    func getSnapshotItems() -> [MenuCell.DisplayData]
+    func updateMenuState()
 }
 
 protocol MenuInput: AnyObject {
-    func reloadMenuItems()
+    func updateSnapshot()
 }
 
 final class MenuViewController: UIViewController {
+    private typealias DataSource = UITableViewDiffableDataSource<Section, MenuCell.DisplayData>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MenuCell.DisplayData>
+
     private enum Constants {
         static let currentCityTitle = "Москва"
         static let currentCityButtonImage = "chevron.down"
         static let currentCityTitleImagePadding: CGFloat = 4
     }
 
+    private enum Section: Int {
+        case main
+    }
+
     var presenter: MenuOutput!
+
     private var menuView: MenuView!
+
+    private lazy var tableViewDataSource: DataSource = {
+        let dataSource = DataSource(tableView: menuView.tableView) { tableView, indexPath, cellDisplayData in
+            let cell = tableView.reuse(MenuCell.self, indexPath)
+            if indexPath.row == 0 { cell.makeUpperCornersRounded() }
+            cell.configure(with: cellDisplayData)
+            return cell
+        }
+        return dataSource
+    }()
 
     private lazy var currentCityButton: UIButton = {
         let cityButton = UIButton(type: .system)
@@ -61,7 +78,17 @@ final class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        assignDelegationAndDataSource()
+        assignDelegationAndCellRegistering()
+        presenter.updateMenuState()
+        updateSnapshot()
+    }
+
+    func updateSnapshot() {
+        let snapshotItems = presenter.getSnapshotItems()
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(snapshotItems, toSection: .main)
+        tableViewDataSource.apply(snapshot, animatingDifferences: false)
     }
 
     private func setupNavigationBar() {
@@ -69,10 +96,9 @@ final class MenuViewController: UIViewController {
         navigationItem.leftBarButtonItem = barButton
     }
 
-    private func assignDelegationAndDataSource() {
+    private func assignDelegationAndCellRegistering() {
         menuView.tableView.register(MenuCell.self)
         menuView.tableView.delegate = self
-        menuView.tableView.dataSource = self
     }
 
     @objc private func currentCityButtonTapped() {
@@ -80,43 +106,16 @@ final class MenuViewController: UIViewController {
     }
 }
 
-extension MenuViewController: MenuInput {
-    func reloadMenuItems() {
-        menuView.reloadTableView()
-    }
-}
-
-extension MenuViewController: UITableViewDataSource {
-    func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.getNumberOfRowsInSection(_: section)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.reuse(MenuCell.self, indexPath)
-        if indexPath.row == 0 {
-            cell.makeUpperCornersRounded()
-        }
-
-        let displayData = presenter.getDisplayDataForItem(at: indexPath)
-        cell.configure(with: displayData)
-
-        presenter.getDisplayDataWithImage(at: indexPath) { displayDataWithImage in
-//            if let displayDataWithImage = displayDataWithImage, displayData.id == displayDataWithImage.id {
-                cell.setImage(with: displayDataWithImage)
-//            }
-        }
-
-        return cell
-    }
-}
+extension MenuViewController: MenuInput { }
 
 extension MenuViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         presenter.didTapOnCell(at: indexPath)
     }
 
-    func tableView(_: UITableView, viewForHeaderInSection _: Int) -> UIView? {
+    func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == Section.main.rawValue else { return nil }
         let headerView = CategoriesView()
         headerView.delegate = self
         return headerView

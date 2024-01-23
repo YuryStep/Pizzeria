@@ -17,16 +17,8 @@ final class MenuPresenter {
             self.items = items
         }
 
-        mutating func setImageDataForItem(at indexPath: IndexPath, data: Data) {
-            items[indexPath.row].imageData = data
-        }
-
         func getItem(at indexPath: IndexPath) -> MenuDisplayData {
             return items[indexPath.row]
-        }
-
-        func getItemsCount() -> Int {
-            return items.count
         }
     }
 
@@ -38,55 +30,53 @@ final class MenuPresenter {
         self.view = view
         self.dataManager = dataManager
         state = State()
-        updateMenuState()
     }
 
-    private func updateMenuState() {
+     func updateMenuState() {
         dataManager.getMenu { [weak self] result in
             guard let self else { return }
             switch result {
             case let .success(menuItems):
-                updateMenuItemsWithoutImages(using: menuItems)
+                updateMenuWithoutImages(using: menuItems)
+                updateMenuWithImages()
             case let .failure(error):
                 print(error)
             }
         }
     }
 
-    private func updateMenuItemsWithoutImages(using menuItems: [MenuItem]) {
+    private func updateMenuWithoutImages(using menuItems: [MenuItem]) {
         var updatedState = [MenuDisplayData]()
         menuItems.forEach { menuItem in
             let displayDataItem = MenuDisplayData(menuItem)
             updatedState.append(displayDataItem)
         }
         state.updateItems(with: updatedState)
-        view?.reloadMenuItems()
+        view?.updateSnapshot()
+    }
+
+    private func updateMenuWithImages() {
+        state.items.forEach{ menuItem in
+            let itemIndex = state.items.firstIndex { $0.id == menuItem.id  }
+            dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
+                print(menuItem.imageStringURL)
+                guard let self else { return }
+                switch result {
+                case let .success(imageData):
+                    state.items[itemIndex!].imageData = imageData
+                    view?.updateSnapshot()
+                case .failure:
+                    print("issue")
+                }
+            }
+        }
     }
 
 }
 
 extension MenuPresenter: MenuOutput {
-    func getNumberOfRowsInSection(_: Int) -> Int {
-        state.getItemsCount()
-    }
-
-    func getDisplayDataForItem(at indexPath: IndexPath) -> MenuDisplayData {
-        return state.getItem(at: indexPath)
-    }
-
-    func getDisplayDataWithImage(at indexPath: IndexPath, completion: @escaping (MenuDisplayData?) -> Void) {
-        let menuItem = state.getItem(at: indexPath)
-        dataManager.getImageData(from: menuItem.imageStringURL) { [weak self] result in
-            guard let self, state.getItem(at: indexPath) == menuItem else { return }
-            switch result {
-            case let .success(imageData):
-                state.setImageDataForItem(at: indexPath, data: imageData)
-                let displayDataWithImage = state.getItem(at: indexPath)
-                completion(displayDataWithImage)
-            case .failure:
-                completion(nil)
-            }
-        }
+    func getSnapshotItems() -> [MenuCell.DisplayData] {
+        return state.items
     }
 
     func didTapOnCurrentCityButton() {
